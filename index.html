@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)file:///C:/Users/julien.hamerlinck/Downloads/nlo_driver_tree_v02_59.html -->
+<html lang="nl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>NLO — Connected Metrics · Driver Tree v02</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:#f3f4f6;color:#111827;min-height:100vh}
+.page{max-width:1700px;margin:0 auto;padding:24px 28px 52px}
+
+/* HEADER */
+.hd{margin-bottom:18px}
+.hd-title{font-size:20px;font-weight:700;color:#111827;margin-bottom:3px}
+.hd-sub{font-size:12px;color:#6b7280}
+
+/* FILTER BAR */
+.fb{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:12px 16px;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.fl{font-size:10px;color:#9ca3af;font-weight:700;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.fdiv{width:1px;height:20px;background:#f3f4f6;flex-shrink:0}
+.tg{display:flex;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;flex-shrink:0}
+.tb{padding:4px 11px;font-size:11px;cursor:pointer;background:#f9fafb;color:#6b7280;border-right:1px solid #e5e7eb;transition:background .12s,color .12s;white-space:nowrap;font-weight:500;user-select:none}
+.tb:last-child{border-right:none}
+.tb.on{background:#fff;color:#111827;font-weight:700}
+.tb:hover:not(.on){background:#f3f4f6}
+
+/* TREE SECTION */
+.tree-wrap{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:22px 20px 18px;margin-bottom:14px;overflow-x:auto}
+.tree-canvas{position:relative;width:1450px;height:582px}
+
+/* NODE BASE */
+.nd{position:absolute;background:#fff;border:1px solid #e5e7eb;border-radius:8px;text-align:center;padding:10px 8px;z-index:1}
+.nd:hover{border-color:#d1d5db;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.nd.redbg{background:#fff1f2;border-color:#fecdd3}
+.nd.redbg:hover{border-color:#f9a8b4}
+.nd-top{background:#f9fafb;border-color:#d1d5db}
+.nd-title{font-size:10px;font-weight:600;color:#374151;margin-bottom:5px;line-height:1.35}
+.nd-top .nd-title{font-size:11px}
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:13px;font-weight:700;margin-bottom:3px;line-height:1.4}
+.nd-top .badge{font-size:15px;padding:3px 14px}
+.bg{background:#dcfce7;color:#166534}
+.br{background:#fee2e2;color:#dc2626}
+.ba{background:#fef3c7;color:#92400e}
+.nd-val{font-size:11px;color:#6b7280;margin-top:1px}
+.nd-top .nd-val{font-size:12px}
+.nd-note{font-size:9px;color:#9ca3af;margin-top:3px;font-style:italic}
+.badge-s{display:inline-block;padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700;margin-top:3px;background:#eff6ff;color:#1d4ed8;letter-spacing:.02em}
+.badge-v{display:inline-block;padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700;margin-top:3px;background:#f3f4f6;color:#6b7280;letter-spacing:.02em}
+.period-bar{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px 16px;margin-bottom:10px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.period-group{display:flex;align-items:center;gap:8px}
+.period-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af}
+.period-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.pd-sel{background:#185fa5}
+.pd-cmp{background:#d1d5db}
+.period-input{border:1px solid #e5e7eb;border-radius:6px;padding:4px 8px;font-size:11px;color:#374151;background:#f9fafb;cursor:pointer;height:28px}
+.period-input:focus{outline:none;border-color:#93c5fd}
+.period-badge{padding:3px 10px;border-radius:6px;font-size:11px;font-weight:600;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;white-space:nowrap}
+.quick-btn{padding:3px 9px;border-radius:5px;font-size:10px;font-weight:600;cursor:pointer;border:1px solid #e5e7eb;background:#f9fafb;color:#6b7280;transition:all .12s}
+.quick-btn:hover{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}
+.quick-btn.on{background:#185fa5;color:#fff;border-color:#185fa5}
+
+/* MOVEMENT PANEL */
+.mv-panel{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;margin-bottom:14px}
+.mv-hd{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.mv-title{font-size:13px;font-weight:700;color:#111827}
+.mv-seg{padding:3px 10px;border-radius:10px;font-size:11px;font-weight:600;background:#f3f4f6;color:#374151;border:1px solid #e5e7eb}
+.mv-note{font-size:11px;color:#9ca3af}
+.mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mv-col{border-radius:8px;padding:12px 14px;border:1px solid #e5e7eb}
+.mv-col-in{border-color:#bbf7d0;background:#f0fdf4}
+.mv-col-out{border-color:#fecdd3;background:#fff1f2}
+.mv-out-section{margin-top:8px;padding-top:8px;border-top:1px dashed #e5e7eb}
+.mv-out-pos-title{font-size:9px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;display:flex;align-items:center;gap:4px}
+.mv-out-neg-title{font-size:9px;font-weight:700;color:#dc2626;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;display:flex;align-items:center;gap:4px}
+.mvdot-sm-g{width:6px;height:6px;border-radius:50%;background:#16a34a;flex-shrink:0}
+.mvdot-sm-r{width:6px;height:6px;border-radius:50%;background:#dc2626;flex-shrink:0}
+.mv-col-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.mv-col-in .mv-col-title{color:#166534}
+.mv-col-out .mv-col-title{color:#dc2626}
+.mvdot-g{width:7px;height:7px;border-radius:50%;background:#16a34a;flex-shrink:0}
+.mvdot-r{width:7px;height:7px;border-radius:50%;background:#dc2626;flex-shrink:0}
+.mv-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:12px;color:#374151}
+.mv-row:last-child{border-bottom:none}
+.mvval-g{font-weight:700;color:#166534;font-size:12px;white-space:nowrap}
+.mvval-r{font-weight:700;color:#dc2626;font-size:12px;white-space:nowrap}
+.mvval-n{font-weight:700;color:#6b7280;font-size:12px;white-space:nowrap}
+
+/* ENRICHMENT */
+.en-panel{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;margin-bottom:14px}
+.en-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af;margin-bottom:12px}
+.en-section{margin-bottom:14px}
+.en-section-title{font-size:11px;font-weight:600;color:#6b7280;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid #f3f4f6}
+.en-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(138px,1fr));gap:8px}
+.en-card{background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px}
+.en-card.hl{border-color:#fecdd3;background:#fff1f2}
+.en-card.hl2{border-color:#ef4444}
+.en-label{font-size:10px;color:#9ca3af;margin-bottom:3px;line-height:1.3}
+.en-val{font-size:15px;font-weight:700;color:#111827}
+.en-delta{display:inline-block;font-size:11px;font-weight:600;margin-top:3px;padding:1px 6px;border-radius:8px}
+.en-row{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:4px}
+.en-abs{font-size:10px;color:#6b7280;font-weight:500}
+.tier-bar-wrap{margin:8px 0 4px}
+.tier-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.tier-label{font-size:11px;font-weight:600;color:#374151;width:80px;flex-shrink:0}
+.tier-bar-bg{flex:1;height:20px;background:#f3f4f6;border-radius:4px;overflow:hidden;position:relative}
+.tier-bar-fill{height:100%;border-radius:4px;transition:width .4s}
+.tier-bar-text{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:10px;font-weight:600;color:#374151;white-space:nowrap}
+.tier-bar-abs{font-size:10px;color:#6b7280;width:70px;text-align:right;flex-shrink:0}
+.combo-table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px}
+.combo-table th{text-align:left;padding:4px 8px;font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #f3f4f6}
+.combo-table td{padding:5px 8px;border-bottom:1px solid #f9fafb;color:#374151}
+.combo-table tr:last-child td{border-bottom:none}
+.combo-table tr:hover td{background:#fafafa}
+.combo-badge{display:inline-flex;gap:3px;flex-wrap:wrap}
+.cb{padding:1px 5px;border-radius:4px;font-size:10px;font-weight:600}
+.cb-stl{background:#e6f1fb;color:#0c447c}
+.cb-ejp{background:#eaf3de;color:#27500a}
+.cb-kl{background:#faeeda;color:#633806}
+.cb-ltt{background:#eeedfe;color:#3c3489}
+.cb-ld{background:#fbeaf0;color:#72243e}
+.combo-pct{font-weight:700;color:#374151}
+.combo-abs{color:#9ca3af;font-size:10px}
+.combo-delta-g{font-weight:700;color:#166534}
+.combo-delta-r{font-weight:700;color:#dc2626}
+
+/* EXECUTION LAYER */
+.ex-panel{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;margin-bottom:14px}
+.ex-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af;margin-bottom:12px}
+.ex-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.ex-col{border-radius:8px;border:1px solid #e5e7eb;padding:10px;overflow:hidden}
+.ex-phase{font-size:10px;font-weight:700;text-align:center;padding:4px 6px;border-radius:5px;margin-bottom:8px}
+.ph-ob{background:#e1f5ee;color:#0f6e56}
+.ph-ac{background:#eaf3de;color:#3b6d11}
+.ph-di{background:#faeeda;color:#854f0b}
+.ph-in{background:#fcebeb;color:#a32d2d}
+.ph-ui{background:#f1efe8;color:#5f5e5a}
+.ch-block{margin-bottom:7px}
+.ch-label{font-size:9px;font-weight:700;color:#374151;margin-bottom:3px;display:flex;align-items:center;gap:4px}
+.ch-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.ch-em{background:#185fa5}
+.ch-pu{background:#0f6e56}
+.ch-we{background:#993c1d}
+.ch-tm{background:#993556}
+.ch-item{font-size:9px;color:#6b7280;padding:2px 0 2px 10px;border-left:1.5px solid #e5e7eb;margin-left:3px;margin-bottom:1px;line-height:1.4}
+.ch-kpi{color:#185fa5;font-weight:600;font-size:9px}
+
+/* LEGEND */
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:#6b7280;padding-top:10px;border-top:1px solid #f3f4f6;margin-top:4px}
+.ld{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:3px;vertical-align:middle}
+.ld-sq{width:14px;height:10px;border-radius:3px;display:inline-block;margin-right:4px;vertical-align:middle;border:1px solid #fecdd3;background:#fff1f2}
+.sd-panel{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;margin-bottom:14px}
+.sd-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af;margin-bottom:14px}
+.sd-bar-wrap{margin-bottom:14px}
+.sd-bar{display:flex;height:28px;border-radius:8px;overflow:hidden;width:100%}
+.sd-bar-seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;transition:opacity .15s;cursor:default;white-space:nowrap;overflow:hidden}
+.sd-bar-seg:hover{opacity:.85}
+.sd-bar-ob{background:#0f6e56}
+.sd-bar-ac{background:#3b6d11}
+.sd-bar-di{background:#854f0b}
+.sd-bar-in{background:#a32d2d}
+.sd-cards{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:12px}
+.sd-card{border-radius:8px;padding:12px 14px;border:1px solid transparent}
+.sd-card-ob{background:#e1f5ee;border-color:#0f6e56}
+.sd-card-ac{background:#eaf3de;border-color:#3b6d11}
+.sd-card-di{background:#faeeda;border-color:#854f0b}
+.sd-card-in{background:#fcebeb;border-color:#a32d2d}
+.sd-card-label{font-size:10px;font-weight:700;margin-bottom:6px}
+.sd-card-ob .sd-card-label{color:#0f6e56}
+.sd-card-ac .sd-card-label{color:#3b6d11}
+.sd-card-di .sd-card-label{color:#854f0b}
+.sd-card-in .sd-card-label{color:#a32d2d}
+.sd-card-abs{font-size:18px;font-weight:700;color:#111827;margin-bottom:2px}
+.sd-card-pct{font-size:13px;font-weight:600;color:#374151;margin-bottom:4px}
+.sd-card-row{display:flex;align-items:center;justify-content:space-between;margin-top:6px;padding-top:6px;border-top:1px solid rgba(0,0,0,.08)}
+.sd-card-meta{font-size:10px;color:#6b7280}
+.sd-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-top:12px;border-top:1px solid #f3f4f6}
+.sd-stat{text-align:center}
+.sd-stat-val{font-size:16px;font-weight:700;color:#111827}
+.sd-stat-label{font-size:10px;color:#9ca3af;margin-top:2px}
+.sd-health{display:flex;align-items:center;gap:6px;justify-content:center;margin-top:4px}
+.sd-health-dot{width:8px;height:8px;border-radius:50%}
+.sd-health-warn{background:#f59e0b}
+.sd-health-ok{background:#16a34a}
+.mv-abs{font-size:11px;color:#374151;font-weight:600;white-space:nowrap}
+.mv-sub-bar{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #f3f4f6;flex-wrap:wrap}
+.mv-sub-fl{font-size:10px;color:#9ca3af;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.mv-model-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="hd">
+  <div class="hd-title">NLO — Connected Metrics · Driver Tree v02</div>
+  <div class="hd-sub">€ Base waarde decomposition · Fases: Onboard / Active / Disengaged / Inactive / Uitstroom · Alle filters zijn globaal van toepassing</div>
+</div>
+
+<!-- FILTER BAR -->
+<!-- PERIOD SELECTOR BAR -->
+<div class="period-bar">
+  <div class="period-group">
+    <span class="period-dot pd-sel"></span>
+    <span class="period-label">Geselecteerde periode</span>
+    <input type="date" id="sel-from" class="period-input" value="2025-04-01" onchange="updatePeriodDisplay()">
+    <span style="font-size:11px;color:#9ca3af">t/m</span>
+    <input type="date" id="sel-to" class="period-input" value="2026-03-31" onchange="updatePeriodDisplay()">
+  </div>
+  <div class="fdiv"></div>
+  <div class="period-group" id="cmp-period-group">
+    <label style="display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none">
+      <input type="checkbox" id="cmp-enable" checked="" onchange="toggleCmpPeriod()" style="width:13px;height:13px;cursor:pointer;accent-color:#185fa5">
+      <span class="period-dot pd-cmp"></span>
+      <span class="period-label">Vergelijkingsperiode</span>
+    </label>
+    <span id="cmp-inputs" style="display:flex;align-items:center;gap:6px">
+      <input type="date" id="cmp-from" class="period-input" value="2024-04-01" onchange="updatePeriodDisplay()">
+      <span style="font-size:11px;color:#9ca3af">t/m</span>
+      <input type="date" id="cmp-to" class="period-input" value="2025-03-31" onchange="updatePeriodDisplay()">
+    </span>
+  </div>
+  <div class="fdiv"></div>
+  <span class="period-label">Snel kiezen</span>
+  <button class="quick-btn on" onclick="setQuick(this,&#39;ytd&#39;)">YTD</button>
+  <button class="quick-btn" onclick="setQuick(this,&#39;lw&#39;)">Vorige week</button>
+  <button class="quick-btn" onclick="setQuick(this,&#39;lm&#39;)">Vorige maand</button>
+  <button class="quick-btn" onclick="setQuick(this,&#39;lq&#39;)">Vorig kwartaal</button>
+  <button class="quick-btn" onclick="setQuick(this,&#39;ly&#39;)">Vorig jaar</button>
+  <div class="fdiv"></div>
+  <span id="period-display" class="period-badge">Apr 2025 – Mrt 2026</span>
+</div>
+
+<div class="fb">
+  <span class="fl">Segment</span>
+  <div class="tg" id="seg-tg">
+    <div class="tb on" onclick="setSeg(this,&#39;all&#39;)">Alle spelers</div>
+    <div class="tb" onclick="setSeg(this,&#39;onboard&#39;)">New</div>
+    <div class="tb" onclick="setSeg(this,&#39;active&#39;)">Repeater</div>
+    <div class="tb" onclick="setSeg(this,&#39;dis&#39;)">At risk</div>
+    <div class="tb" onclick="setSeg(this,&#39;inact&#39;)">Sleeper</div>
+  </div>
+  <div class="fdiv"></div>
+  <span class="fl">Product</span>
+  <div class="tg">
+    <div class="tb on" onclick="tog(this)">Combi</div>
+    <div class="tb" onclick="tog(this)">Abo</div>
+    <div class="tb" onclick="tog(this)">Los lot</div>
+  </div>
+  <div class="fdiv"></div>
+  <span class="fl">Speltype</span>
+  <div class="tg">
+    <div class="tb on" onclick="tog(this)">NLO</div>
+    <div class="tb" onclick="tog(this)">STL</div>
+    <div class="tb" onclick="tog(this)">EJP</div>
+    <div class="tb" onclick="tog(this)">KL</div>
+    <div class="tb" onclick="tog(this)">LTT</div>
+    <div class="tb" onclick="tog(this)">LD</div>
+    <div class="tb" onclick="tog(this)">MJN</div>
+  </div>
+  <div class="fdiv"></div>
+  <span class="fl">Single/Multi</span>
+  <div class="tg">
+    <div class="tb on" onclick="tog(this)">Alle</div>
+    <div class="tb" onclick="tog(this)">Single-brand</div>
+    <div class="tb" onclick="tog(this)">Multi-brand</div>
+  </div>
+  <div class="fdiv"></div>
+  <span class="fl">Demografie</span>
+  <div class="tg">
+    <div class="tb on" onclick="tog(this)">Alle</div>
+    <div class="tb" onclick="tog(this)">Man</div>
+    <div class="tb" onclick="tog(this)">Vrouw</div>
+  </div>
+  <div class="fdiv"></div>
+  <span class="fl">Omzet</span>
+  <div class="tg">
+    <div class="tb on" onclick="tog(this)">Coupon date</div>
+    <div class="tb" onclick="tog(this)">Draw date</div>
+  </div>
+</div>
+
+<!-- JACKPOT CONTEXT BAR -->
+<div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px 16px;margin-bottom:10px;display:flex;align-items:center;gap:0;flex-wrap:wrap">
+  <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#9ca3af;margin-right:14px;flex-shrink:0">Jackpot context</span>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;flex:1">
+    <div style="display:flex;align-items:center;gap:6px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:7px;padding:5px 10px">
+      <span style="font-size:10px;font-weight:700;color:#1d4ed8">STL</span>
+      <span style="font-size:12px;font-weight:700;color:#111827">€ 22.000.000</span>
+      <span style="font-size:9px;color:#6b7280">10 apr · Mega Jackpot 🔥</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:7px;padding:5px 10px">
+      <span style="font-size:10px;font-weight:700;color:#166534">EJP</span>
+      <span style="font-size:12px;font-weight:700;color:#111827">€ 10.000.000</span>
+      <span style="font-size:9px;color:#6b7280">Reset na 3 wins · di &amp; vr</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;background:#faf5ff;border:1px solid #e9d5ff;border-radius:7px;padding:5px 10px">
+      <span style="font-size:10px;font-weight:700;color:#7c3aed">LTT</span>
+      <span style="font-size:12px;font-weight:700;color:#111827">€ 6.100.000</span>
+      <span style="font-size:9px;color:#6b7280">Zaterdag · min €1M</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;background:#fff7ed;border:1px solid #fed7aa;border-radius:7px;padding:5px 10px">
+      <span style="font-size:10px;font-weight:700;color:#c2410c">MJN</span>
+      <span style="font-size:12px;font-weight:700;color:#111827">€50K of €1.000.000</span>
+      <span style="font-size:9px;color:#6b7280">Zaterdag · vaste prijs</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;background:#fdf4ff;border:1px solid #f0abfc;border-radius:7px;padding:5px 10px">
+      <span style="font-size:10px;font-weight:700;color:#a21caf">KL</span>
+      <span style="font-size:12px;font-weight:700;color:#111827">Instant win</span>
+      <span style="font-size:9px;color:#6b7280">Dagelijks · vaste series</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;background:#fefce8;border:1px solid #fde047;border-radius:7px;padding:5px 10px">
+      <span style="font-size:10px;font-weight:700;color:#a16207">LD</span>
+      <span style="font-size:12px;font-weight:700;color:#111827">max € 6.700.000</span>
+      <span style="font-size:9px;color:#6b7280">Dagelijks · variabel</span>
+    </div>
+  </div>
+  <span style="font-size:9px;color:#9ca3af;margin-left:10px;flex-shrink:0">Stand: 9 apr 2026</span>
+</div>
+
+<!-- DRIVER TREE -->
+<div class="tree-wrap">
+<div class="tree-canvas" style="width:1450px;height:600px;position:relative">
+
+<!-- SVG CONNECTORS -->
+<svg width="1450" height="600" style="position:absolute;top:0;left:0;pointer-events:none;z-index:0">
+  <g stroke="#d1d5db" stroke-width="1.5" fill="none">
+    <!-- N0 → N1 (#Spelers) and N2 (LTV) -->
+    <path d="M700,122 V145"></path>
+    <path d="M195,145 H1088"></path>
+    <path d="M195,145 V185"></path>
+    <path d="M1088,145 V185"></path>
+    <!-- N1 (#Spelers) → Netto spelersgroei (Level 2) → Instroom/Uitstroom -->
+    <path d="M195,285 V330"></path>
+    <path d="M195,418 V445"></path>
+    <path d="M80,445 H230"></path>
+    <path d="M80,445 V470"></path>
+    <path d="M230,445 V470"></path>
+    <!-- N2 (LTV, cx=1088) → N3/N4/N5 -->
+    <path d="M1088,285 V300"></path>
+    <path d="M535,300 H1355"></path>
+    <path d="M535,300 V330"></path>
+    <path d="M1015,300 V330"></path>
+    <path d="M1355,300 V330"></path>
+    <!-- N3 (Omzet, cx=535) → L0/L1/L2 -->
+    <path d="M535,418 V445"></path>
+    <path d="M400,445 H670"></path>
+    <path d="M400,445 V470"></path>
+    <path d="M535,445 V470"></path>
+    <path d="M670,445 V470"></path>
+    <!-- N4 (AOV, cx=1015) → L3/L4/L6/L7 -->
+    <path d="M1015,418 V445"></path>
+    <path d="M820,445 H1210"></path>
+    <path d="M820,445 V470"></path>
+    <path d="M950,445 V470"></path>
+    <path d="M1080,445 V470"></path>
+    <path d="M1210,445 V470"></path>
+    <!-- N5 (Lifetime, cx=1355) → L9 only -->
+    <path d="M1355,418 V470"></path>
+  </g>
+  <!-- Group labels above leaf row -->
+  <text x="195" y="464" text-anchor="middle" font-size="9" fill="#6b7280" font-family="-apple-system,system-ui,sans-serif">Instroom / Uitstroom</text>
+  <text x="535" y="466" text-anchor="middle" font-size="9" fill="#185fa5" font-weight="600" font-family="-apple-system,system-ui,sans-serif">Omzet / speler drivers</text>
+  <text x="1015" y="466" text-anchor="middle" font-size="9" fill="#166534" font-weight="600" font-family="-apple-system,system-ui,sans-serif">AOV drivers</text>
+  <text x="1355" y="466" text-anchor="middle" font-size="9" fill="#854f0b" font-weight="600" font-family="-apple-system,system-ui,sans-serif">Lifetime drivers</text>
+</svg>
+
+<!-- ====== LEVEL 0 ====== -->
+<div class="nd nd-top" style="left: 600px; top: 22px; width: 200px; height: 100px; cursor: pointer; box-shadow: rgb(24, 95, 165) 0px 0px 0px 2px;" onclick="showTrend(&#39;n0&#39;,&#39;€ Base waarde&#39;)">
+  <div class="nd-title">€ Base waarde — totale omzet</div>
+  <div><span class="badge bg" id="d-n0">+7.4%</span></div>
+  <div class="nd-val" id="v-n0">€ 85.240.000</div>
+</div>
+
+<!-- ====== LEVEL 1 ====== -->
+<!-- N1: # Spelers | cx=200, left=118, w=164, top=185 -->
+<div class="nd" style="left:105px;top:185px;width:180px;height:100px;cursor:pointer" onclick="showTrend(&#39;n1&#39;,&#39;# Spelers&#39;)">
+  <div class="nd-title"># Spelers</div>
+  <span class="badge-s">Sturend</span>
+  <div><span class="badge bg" id="d-n1">+2.3%</span></div>
+  <div class="nd-val" id="v-n1">1.204.000 spelers</div>
+</div>
+
+<!-- N2: LTV | cx=1088, left=994, w=188, top=185 -->
+<div class="nd" style="left:994px;top:185px;width:188px;height:100px;cursor:pointer" onclick="showTrend(&#39;n2&#39;,&#39;LTV — gem. levensduurwaarde&#39;)">
+  <div class="nd-title">LTV — gem. levensduurwaarde</div>
+  <span class="badge-v">Verklarend</span>
+  <div><span class="badge bg" id="d-n2">+5.3%</span></div>
+  <div class="nd-val" id="v-n2">€ 70,80</div>
+</div>
+
+<!-- ====== LEVEL 2 — under LTV only ====== -->
+<!-- N3: Omzet/speler | cx=535, left=445, top=330 -->
+<div class="nd" style="left:445px;top:330px;width:180px;height:88px;cursor:pointer" onclick="showTrend(&#39;n3&#39;,&#39;Omzet / speler&#39;)">
+  <div class="nd-title">Omzet / speler</div>
+  <span class="badge-s">Sturend</span>
+  <div><span class="badge bg" id="d-n3">+8.1%</span></div>
+  <div class="nd-val" id="v-n3">€ 8,50</div>
+</div>
+
+<!-- N4: AOV | cx=1015, left=925, top=330 -->
+<div class="nd" style="left:925px;top:330px;width:180px;height:88px;cursor:pointer" onclick="showTrend(&#39;n4&#39;,&#39;AOV — gem. orderwaarde&#39;)">
+  <div class="nd-title">AOV — gem. orderwaarde</div>
+  <span class="badge-s">Sturend</span>
+  <div><span class="badge bg" id="d-n4">+11.4%</span></div>
+  <div class="nd-val" id="v-n4">€ 22,65</div>
+</div>
+
+<!-- N5: Lifetime | cx=1355, left=1265, top=330 -->
+<div class="nd" style="left:1265px;top:330px;width:180px;height:88px;cursor:pointer" onclick="showTrend(&#39;n5&#39;,&#39;Lifetime (mnd)&#39;)">
+  <div class="nd-title">Lifetime (mnd)</div>
+  <span class="badge-v">Verklarend</span>
+  <div><span class="badge bg" id="d-n5">+2.1%</span></div>
+  <div class="nd-val" id="v-n5">8,3 mnd actief</div>
+</div>
+
+<!-- ====== LEVEL 2 — under #Spelers ====== -->
+<!-- N_NETTO: Netto spelersgroei | cx=195, left=105, top=330 -->
+<div class="nd" style="left:105px;top:330px;width:180px;height:88px;cursor:pointer" onclick="showTrend(&#39;n_netto&#39;,&#39;Netto spelersgroei in periode&#39;)">
+  <div class="nd-title">Netto spelersgroei in periode</div>
+  <span class="badge-s">Sturend</span>
+  <div><span class="badge bg" id="d-n_netto">+2.3%</span></div>
+  <div class="nd-val" id="v-n_netto">+76.180 netto</div>
+</div>
+
+<!-- ====== LEVEL 3 — under #Spelers ====== -->
+<!-- LA: Instroom | cx=80, left=10, top=470 -->
+<div class="nd" style="left:10px;top:470px;width:140px;height:102px;cursor:pointer" onclick="showTrend(&#39;n1a&#39;,&#39;Instroom&#39;)">
+  <div class="nd-title">Instroom</div>
+  <span class="badge-s">Sturend</span>
+  <div><span class="badge bg" id="d-n1a">+18.2%</span></div>
+  <div class="nd-val" id="v-n1a">84.600 nieuw</div>
+</div>
+
+<!-- LB: Uitstroom | cx=230, left=160, top=470 — RED -->
+<div class="nd redbg" style="left:160px;top:470px;width:140px;height:102px;cursor:pointer" onclick="showTrend(&#39;n1b&#39;,&#39;Uitstroom — geanonimiseerd&#39;)">
+  <div class="nd-title">Uitstroom ↓ goed</div>
+  <span class="badge-v">Verklarend</span>
+  <div><span class="badge br" id="d-n1b">+1.2%</span></div>
+  <div class="nd-val" id="v-n1b">8.420 weg</div>
+</div>
+
+<!-- ====== LEVEL 3 — under Omzet/speler ====== -->
+<!-- L0: Activity rate | cx=400, left=340 -->
+<div class="nd" style="left:340px;top:470px;width:120px;height:102px;cursor:pointer" onclick="showTrend(&#39;l0&#39;,&#39;Activity rate&#39;)">
+  <div class="nd-title">Activity rate</div>
+  <span class="badge-s">Sturend</span>
+  <div><span class="badge bg" id="d-l0">+15.2%</span></div>
+  <div class="nd-val" id="v-l0">68,4%</div>
+</div>
+
+<!-- L1: Speelmomenten | cx=535, left=475 -->
+<div class="nd" style="left:475px;top:470px;width:120px;height:102px;cursor:pointer" onclick="showTrend(&#39;l1&#39;,&#39;Speelmomenten / speler&#39;)">
+  <div class="nd-title">Speel­momenten / speler</div>
+  <span class="badge-v">Verklarend</span>
+  <div><span class="badge br" id="d-l1">-6.3%</span></div>
+  <div class="nd-val" id="v-l1">4,2 /mnd</div>
+</div>
+
+<!-- L2: Speelinterval | cx=670, left=610 -->
+<div class="nd" style="left:610px;top:470px;width:120px;height:102px;cursor:pointer" onclick="showTrend(&#39;l2&#39;,&#39;Gem. speelinterval (dgn)&#39;)">
+  <div class="nd-title">Speelinterval (dgn) ↓ goed</div>
+  <span class="badge-v">Verklarend</span>
+  <div><span class="badge bg" id="d-l2">+18.7%</span></div>
+  <div class="nd-val" id="v-l2">14,3 dgn</div>
+</div>
+
+<!-- ====== LEVEL 3 — under AOV ====== -->
+<!-- L3: Prijs/lot | cx=820, left=760 -->
+<div class="nd" style="left:760px;top:470px;width:120px;height:102px;cursor:pointer" onclick="showTrend(&#39;l3&#39;,&#39;Gem. prijs per lot&#39;)">
+  <div class="nd-title">Gem. prijs per lot</div>
+  <span class="badge-s">Sturend</span>
+  <div><span class="badge bg" id="d-l3">+12.1%</span></div>
+  <div class="nd-val" id="v-l3">€ 6,50</div>
+</div>
+
+<!-- L4: Loten/aankoop | cx=950, left=890 -->
+<div class="nd" style="left:890px;top:470px;width:120px;height:102px;cursor:pointer" onclick="showTrend(&#39;l4&#39;,&#39;Gem. loten per aankoop&#39;)">
+  <div class="nd-title">Gem. loten per aankoop</div>
+  <span class="badge-s">Sturend</span>
+  <div><span class="badge bg" id="d-l4">+7.4%</span></div>
+  <div class="nd-val" id="v-l4">3,3 loten</div>
+</div>
+
+<!-- L6: % Promotie | cx=1080, left=1020 -->
+<div class="nd" style="left:1020px;top:470px;width:120px;height:102px;cursor:pointer" onclick="showTrend(&#39;l6&#39;,&#39;% Aankopen met promotie&#39;)">
+  <div class="nd-title">% Aanko. met promotie</div>
+  <span class="badge-s">Sturend</span>
+  <div><span class="badge br" id="d-l6">-8.1%</span></div>
+  <div class="nd-val" id="v-l6">34,2%</div>
+</div>
+
+<!-- L7: % Korting | cx=1210, left=1150 -->
+<div class="nd" style="left:1150px;top:470px;width:120px;height:102px;cursor:pointer" onclick="showTrend(&#39;l7&#39;,&#39;Gem. % korting&#39;)">
+  <div class="nd-title">Gem. % korting</div>
+  <span class="badge-s">Sturend</span>
+  <div><span class="badge br" id="d-l7">-5.3%</span></div>
+  <div class="nd-val" id="v-l7">8,5%</div>
+</div>
+
+<!-- ====== LEVEL 3 — under Lifetime ====== -->
+<!-- L9: Aankoop recentie | cx=1355, left=1295 -->
+<div class="nd" style="left:1295px;top:470px;width:120px;height:102px;cursor:pointer" onclick="showTrend(&#39;l9&#39;,&#39;Aankoop recentie (dgn)&#39;)">
+  <div class="nd-title">Aankoop recentie (dgn)</div>
+  <span class="badge-v">Verklarend</span>
+  <div><span class="badge br" id="d-l9">+15.3%</span></div>
+  <div class="nd-val" id="v-l9">9,8 dgn</div>
+</div>
+
+</div><!-- /tree-canvas -->
+</div><!-- /tree-wrap -->
+
+<!-- TREND PANEL -->
+<div id="trend-panel" style="display: block; background: rgb(255, 255, 255); border: 1px solid rgb(229, 231, 235); border-radius: 14px; padding: 20px; margin-bottom: 14px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+    <div>
+      <span id="trend-title" style="font-size:15px;font-weight:700;color:#111827">€ Base waarde</span>
+      <span style="font-size:11px;color:#9ca3af;margin-left:10px">— klik een ander knooppunt om te wisselen</span>
+    </div>
+    <button onclick="document.getElementById(&#39;trend-panel&#39;).style.display=&#39;none&#39;" style="background:none;border:0.5px solid #e5e7eb;border-radius:6px;padding:4px 10px;font-size:11px;color:#6b7280;cursor:pointer">✕ Sluiten</button>
+  </div>
+  <!-- Chart legend — driven by top bar comparison toggle -->
+  <div id="chart-legend" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:8px 12px;background:#f9fafb;border-radius:8px;margin-bottom:12px;border:1px solid #f3f4f6">
+    <div style="display:flex;align-items:center;gap:6px">
+      <span style="width:24px;height:3px;background:#185fa5;display:inline-block;border-radius:2px"></span>
+      <span id="legend-sel" style="font-size:11px;font-weight:600;color:#374151">Apr 2025 – Mrt 2026</span>
+      <span style="font-size:10px;color:#9ca3af">— geselecteerde periode</span>
+    </div>
+    <div id="cmp-legend-row" style="display:flex;align-items:center;gap:6px">
+      <span style="width:24px;height:0;border-top:2.5px dashed #9ca3af;display:inline-block"></span>
+      <span id="legend-cmp" style="font-size:11px;font-weight:600;color:#6b7280">Apr 2024 – Mrt 2025</span>
+      <span style="font-size:10px;color:#9ca3af">— vergelijkingsperiode</span>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 220px;gap:20px;align-items:start">
+    <div style="position:relative;height:220px;width:100%">
+      <canvas id="trend-chart" style="width:100%;height:220px" width="1362" height="220"></canvas>
+    </div>
+    <div>
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af;margin-bottom:10px">Samenvatting</div>
+      <div id="trend-stats">
+    <div style="background:#f9fafb;border-radius:8px;padding:10px 12px;margin-bottom:8px">
+      <div style="font-size:10px;color:#9ca3af;margin-bottom:2px">Huidige waarde</div>
+      <div style="font-size:20px;font-weight:700;color:#111827">85.2</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <div style="background:#f9fafb;border-radius:8px;padding:8px 10px">
+        <div style="font-size:9px;color:#9ca3af">12-mnd trend</div>
+        <div style="font-size:13px;font-weight:700;color:#166534">+14.8%</div>
+      </div>
+      <div style="background:#f9fafb;border-radius:8px;padding:8px 10px">
+        <div style="font-size:9px;color:#9ca3af">Gem. waarde</div>
+        <div style="font-size:13px;font-weight:700;color:#374151">80.8</div>
+      </div>
+      <div style="background:#f9fafb;border-radius:8px;padding:8px 10px">
+        <div style="font-size:9px;color:#9ca3af">Min (12 mnd)</div>
+        <div style="font-size:13px;font-weight:700;color:#374151">74.2</div>
+      </div>
+      <div style="background:#f9fafb;border-radius:8px;padding:8px 10px">
+        <div style="font-size:9px;color:#9ca3af">Max (12 mnd)</div>
+        <div style="font-size:13px;font-weight:700;color:#374151">85.2</div>
+      </div>
+    </div>
+    <div style="margin-top:8px;padding:8px 10px;border-radius:8px;background:#f0fdf4;border:1px solid #bbf7d0">
+      <div style="font-size:10px;font-weight:600;color:#166534">Positieve trend ↑</div>
+      <div style="font-size:10px;color:#166534;margin-top:2px">Richting laatste 12 maanden</div>
+    </div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- WATERFALL PANEL -->
+<div id="waterfall-panel" style="background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:20px;margin-bottom:14px">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:8px">
+    <div>
+      <span style="font-size:15px;font-weight:700;color:#111827">€ Base waarde — bridge analyse</span>
+      <span style="font-size:11px;color:#9ca3af;margin-left:10px">Welke driver heeft hoeveel euro bijgedragen?</span>
+    </div>
+    <span id="wf-period-lbl" style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe">Apr 2024–Mrt 2025 → Apr 2025–Mrt 2026</span>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:14px">
+    <div style="background:#f9fafb;border-radius:8px;padding:8px 14px;display:flex;flex-direction:column;gap:2px">
+      <span style="font-size:9px;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em">Vorige periode</span>
+      <span style="font-size:16px;font-weight:700;color:#374151">€ 74,2M</span>
+    </div>
+    <div style="background:#f9fafb;border-radius:8px;padding:8px 14px;display:flex;flex-direction:column;gap:2px">
+      <span style="font-size:9px;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em">Huidige periode</span>
+      <span style="font-size:16px;font-weight:700;color:#111827">€ 85,2M</span>
+    </div>
+    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:8px 14px;display:flex;flex-direction:column;gap:2px">
+      <span style="font-size:9px;color:#166534;text-transform:uppercase;letter-spacing:.05em">Netto groei</span>
+      <span style="font-size:16px;font-weight:700;color:#166534">+€ 11,0M (+14.8%)</span>
+    </div>
+  </div>
+  <div id="wf-container" style="position:relative;width:100%;height:300px;min-height:300px">
+    <canvas id="wf-canvas" style="display:block;width:100%;height:300px" width="1602" height="300"></canvas>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:10px;font-size:11px;color:var(--color-text-secondary,#6b7280);padding-top:10px;border-top:1px solid #f3f4f6">
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#6b7280;display:inline-block"></span>Startwaarde / eindwaarde</span>
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#166534;display:inline-block"></span>Positieve bijdrage</span>
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#dc2626;display:inline-block"></span>Negatieve bijdrage</span>
+    <span style="color:#9ca3af">Hover over een balk voor details</span>
+  </div>
+</div>
+
+<!-- SEGMENT DISTRIBUTION PANEL -->
+<div class="sd-panel">
+  <div class="sd-title">Segmentverdeling spelersbase — totaal 1.204.000 spelers · 6 segmenten (GET / GROW / KEEP)</div>
+  <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:11px;color:#92400e">⚠️ <strong>Segmentindeling wordt geüpdatet</strong> naar: New · Repeater · Revived · Recovered · At risk · Sleeper — definitie in afstemming met BI (# dgn nog niet gevalideerd)</div>
+
+  <!-- Stacked bar -->
+  <div class="sd-bar-wrap">
+    <div class="sd-bar">
+      <div class="sd-bar-seg sd-bar-ob" style="width:7%" title="New: 7%">7%</div>
+      <div class="sd-bar-seg sd-bar-ac" style="width:55%" title="Repeater: 55%">Repeater 55%</div>
+      <div class="sd-bar-seg" style="width:10%;background:#0f6e56;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff" title="Revived: 10%">10%</div>
+      <div class="sd-bar-seg" style="width:5%;background:#185fa5;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff" title="Recovered: 5%">5%</div>
+      <div class="sd-bar-seg sd-bar-di" style="width:15%" title="At risk: 15%">15%</div>
+      <div class="sd-bar-seg sd-bar-in" style="width:8%" title="Sleeper: 8%">8%</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:9px">
+      <span style="color:#0f6e56;font-weight:600">New</span>
+      <span style="color:#3b6d11;font-weight:600">Repeater</span>
+      <span style="color:#0f6e56;font-weight:600">Revived</span>
+      <span style="color:#185fa5;font-weight:600">Recovered</span>
+      <span style="color:#854f0b;font-weight:600">At risk</span>
+      <span style="color:#a32d2d;font-weight:600">Sleeper</span>
+    </div>
+  </div>
+
+  <!-- Segment cards -->
+  <div class="sd-cards">
+
+    <!-- ONBOARDING -->
+    <div class="sd-card sd-card-ob">
+      <div class="sd-card-label">New</div>
+      <div class="sd-card-abs">84.600</div>
+      <div class="sd-card-pct">7,0% van basis</div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">vs vorige periode</span>
+        <span class="en-delta bg" style="font-size:10px">+18.2%</span>
+      </div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">1e aankoop conv. %</span>
+        <span style="font-size:11px;font-weight:600;color:#0f6e56">62,4%</span>
+      </div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">Nog geen aankoop</span>
+        <span style="font-size:11px;font-weight:600;color:#854f0b">31.900</span>
+      </div>
+    </div>
+
+    <!-- REVIVED — positive signal, growing = good -->
+    <div class="sd-card" style="background:#e1f5ee;border:1px solid #0f6e56;border-radius:8px;padding:12px 14px">
+      <div class="sd-card-label" style="font-size:10px;font-weight:700;color:#0f6e56;margin-bottom:6px">Revived</div>
+      <div class="sd-card-abs">124.000</div>
+      <div class="sd-card-pct">10,3% van basis</div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">vs vorige periode</span>
+        <span class="en-delta bg" style="font-size:10px">+8.4%</span>
+      </div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">Netto instroom</span>
+        <span style="font-size:11px;font-weight:600;color:#166534">+9.840 ↑</span>
+      </div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">Gem. LTV</span>
+        <span style="font-size:11px;font-weight:600;color:#374151">€ 58,20</span>
+      </div>
+    </div>
+
+    <!-- RECOVERED — positive signal -->
+    <div class="sd-card" style="background:#eff6ff;border:1px solid #185fa5;border-radius:8px;padding:12px 14px">
+      <div class="sd-card-label" style="font-size:10px;font-weight:700;color:#185fa5;margin-bottom:6px">Recovered</div>
+      <div class="sd-card-abs">62.000</div>
+      <div class="sd-card-pct">5,1% van basis</div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">vs vorige periode</span>
+        <span class="en-delta bg" style="font-size:10px">+3.2%</span>
+      </div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">Netto instroom</span>
+        <span style="font-size:11px;font-weight:600;color:#166534">+3.210 ↑</span>
+      </div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">Gem. LTV</span>
+        <span style="font-size:11px;font-weight:600;color:#374151">€ 52,40</span>
+      </div>
+    </div>
+
+    <!-- REPEATER — primary target state -->
+    <div class="sd-card sd-card-ac">
+      <div class="sd-card-label">Repeater</div>
+      <div class="sd-card-abs">842.000</div>
+      <div class="sd-card-pct">69,9% van basis</div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">vs vorige periode</span>
+        <span class="en-delta bg" style="font-size:10px">+4.1%</span>
+      </div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">Netto instroom</span>
+        <span style="font-size:11px;font-weight:600;color:#166534">+24.960 ↑</span>
+      </div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">Gem. LTV</span>
+        <span style="font-size:11px;font-weight:600;color:#374151">€ 72,90</span>
+      </div>
+    </div>
+
+    <!-- DISENGAGED — negative segment, shrinking = GOOD (green), growing = bad (red) -->
+    <div class="sd-card sd-card-di">
+      <div class="sd-card-label">At risk</div>
+      <div class="sd-card-abs">241.000</div>
+      <div class="sd-card-pct">20,0% van basis</div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">vs vorige periode</span>
+        <span class="en-delta bg" style="font-size:10px">-6.8% ↓ goed</span>
+      </div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">Reactivatie saldo</span>
+        <span style="font-size:11px;font-weight:600;color:#166534">-17.640 ↓ goed</span>
+      </div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">Gem. LTV</span>
+        <span style="font-size:11px;font-weight:600;color:#374151">€ 65,50</span>
+      </div>
+    </div>
+
+    <!-- INACTIVE — negative segment, shrinking = GOOD (green), growing = bad (red) -->
+    <div class="sd-card sd-card-in">
+      <div class="sd-card-label">Sleeper</div>
+      <div class="sd-card-abs">36.400</div>
+      <div class="sd-card-pct">3,0% van basis</div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">vs vorige periode</span>
+        <span class="en-delta bg" style="font-size:10px">-2.1% ↓ goed</span>
+      </div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">Reactivatie saldo</span>
+        <span style="font-size:11px;font-weight:600;color:#166534">-780 ↓ goed</span>
+      </div>
+      <div class="sd-card-row">
+        <span class="sd-card-meta">Gem. LTV</span>
+        <span style="font-size:11px;font-weight:600;color:#374151">€ 66,40</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom stats — 3 strategic health indicators -->
+  <div class="sd-bottom">
+    <div class="sd-stat">
+      <div class="sd-stat-val">69,9%</div>
+      <div class="sd-stat-label">Repeater share van basis (doel-segment)</div>
+      <div class="sd-health"><span class="sd-health-dot sd-health-ok"></span><span style="font-size:10px;color:#166534">Gezond — target &gt;60%</span></div>
+    </div>
+    <div class="sd-stat">
+      <div class="sd-stat-val">4,8%</div>
+      <div class="sd-stat-label">Verval % — Repeater → At risk / Sleeper deze periode</div>
+      <div class="sd-health"><span class="sd-health-dot sd-health-ok"></span><span style="font-size:10px;color:#166534">Acceptabel — target &lt;7%</span></div>
+    </div>
+    <div class="sd-stat">
+      <div class="sd-stat-val">8,1%</div>
+      <div class="sd-stat-label">Reactivatie % — At risk + Sleeper → Repeater deze periode</div>
+      <div class="sd-health"><span class="sd-health-dot sd-health-ok"></span><span style="font-size:10px;color:#166534">Goed — target &gt;6%</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- MOVEMENT PANEL 1 — CVM SEGMENTATIE MODEL (Active / At Risk / Sleeper) -->
+<div class="mv-panel">
+  <div class="mv-hd">
+    <span class="mv-title">Spelersbewegingen</span>
+    <span class="mv-model-badge" style="background:#e6f1fb;color:#0c447c">Model 1 — CVM (RFM)</span>
+    <span class="mv-note">New · Repeater · Revived · Recovered · At risk · Sleeper — gebaseerd op aankoopgedrag</span>
+  </div>
+  <div class="mv-sub-bar">
+    <span class="mv-sub-fl">Segment</span>
+    <div class="tg" id="seg1-tg">
+      <div class="tb on" onclick="setSeg1(this,&#39;all&#39;)">Alle spelers</div>
+      <div class="tb" onclick="setSeg1(this,&#39;new&#39;)">New</div>
+      <div class="tb" onclick="setSeg1(this,&#39;repeater&#39;)">Repeater</div>
+      <div class="tb" onclick="setSeg1(this,&#39;revived&#39;)">Revived / Recovered</div>
+      <div class="tb" onclick="setSeg1(this,&#39;atrisk&#39;)">At risk</div>
+      <div class="tb" onclick="setSeg1(this,&#39;sleeper&#39;)">Sleeper</div>
+    </div>
+    <span class="mv-seg" id="mv1-seg-lbl">Alle spelers</span>
+  </div>
+  <div class="mv-grid">
+    <div class="mv-col mv-col-in">
+      <div class="mv-col-title"><span class="mvdot-g"></span>Inflow — spelers die binnenkomen</div>
+      <div id="mv1-in"><div class="mv-row"><span>New — eerste aankoop gedaan</span><div class="mv-vals"><span class="mv-abs">+35.420</span><span class="mvval-g">+2.9%</span></div></div><div class="mv-row"><span>Revived — At risk → Repeater (heractivering)</span><div class="mv-vals"><span class="mv-abs">+9.840</span><span class="mvval-g">+0.8%</span></div></div><div class="mv-row"><span>Recovered — Sleeper → Repeater (winback)</span><div class="mv-vals"><span class="mv-abs">+3.210</span><span class="mvval-g">+0.3%</span></div></div></div>
+    </div>
+    <div class="mv-col mv-col-out">
+      <div class="mv-col-title"><span class="mvdot-r"></span>Uitstroom uit segment</div>
+      <div id="mv1-pos-out"></div>
+      <div id="mv1-neg-out"><div class="mv-out-neg-title"><span class="mvdot-sm-r"></span>Negatieve uitstroom — naar slechtere staat</div><div class="mv-row"><span>→ At risk — herhaalaankoop uitgebleven</span><div class="mv-vals"><span class="mv-abs">-48.200</span><span class="mvval-r">-4.0%</span></div></div><div class="mv-row"><span>→ Sleeper — langdurig geen aankoop</span><div class="mv-vals"><span class="mv-abs">-21.600</span><span class="mvval-r">-1.8%</span></div></div><div class="mv-row"><span>→ Uitstroom — geanonimiseerd (&gt;3 jr)</span><div class="mv-vals"><span class="mv-abs">-8.420</span><span class="mvval-r">-0.7%</span></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ENRICHMENT PANEL -->
+<div class="en-panel">
+  <div class="en-title">Cross-brand &amp; abonnement verdieping — dezelfde filters gelden</div>
+
+  <div class="en-section">
+    <div class="en-section-title">Cross-brand metrics</div>
+    <div class="en-grid">
+      <div class="en-card"><div class="en-label">Single-brand spelers</div><div class="en-val">68%</div><div class="en-row"><span class="en-abs">818.720 spelers</span><span class="en-delta br">-4.2%</span></div></div>
+      <div class="en-card"><div class="en-label">Multi-brand spelers</div><div class="en-val">32%</div><div class="en-row"><span class="en-abs">385.280 spelers</span><span class="en-delta bg">+9.1%</span></div></div>
+      <div class="en-card"><div class="en-label">Gem. actieve merken / speler</div><div class="en-val">2.4</div><div class="en-row"><span class="en-abs">multi-brand basis</span><span class="en-delta bg">+0.3</span></div></div>
+      <div class="en-card"><div class="en-label">Cross-brand conv. (single→multi)</div><div class="en-val">8.3%</div><div class="en-row"><span class="en-abs">+32.010 spelers</span><span class="en-delta bg">+1.2%</span></div></div>
+      <div class="en-card"><div class="en-label">Multi → single migratie</div><div class="en-val">2.1%</div><div class="en-row"><span class="en-abs">-8.090 spelers</span><span class="en-delta br">+0.3%</span></div></div>
+      <div class="en-card"><div class="en-label">Los → abo conversie</div><div class="en-val">4.1%</div><div class="en-row"><span class="en-abs">+15.800 spelers</span><span class="en-delta bg">+0.8%</span></div></div>
+    </div>
+  </div>
+
+  <div class="en-section">
+    <div class="en-section-title">Abonnement verdieping — churn-modellen STL / EJP / LTT (geen RFM)</div>
+    <div class="en-grid">
+      <div class="en-card hl" style="border-color:#a32d2d;background:#fff1f2"><div class="en-label" style="color:#a32d2d;font-weight:700">Totaal churn rate ★</div><div class="en-val" style="color:#a32d2d">8,2%</div><div class="en-row"><span class="en-abs">alle abonnementen</span><span class="en-delta br">+22.4%</span></div></div>
+      <div class="en-card hl" style="border-color:#166534;background:#f0fdf4"><div class="en-label" style="color:#166534;font-weight:700">Instroom abonnementen ★</div><div class="en-val">4.840</div><div class="en-row"><span class="en-abs">nieuwe abonnees</span><span class="en-delta bg">+8.4%</span></div></div>
+      <div class="en-card hl"><div class="en-label">Totale omzet abonnementen</div><div class="en-val">€ 42,6M</div><div class="en-row"><span class="en-abs">deze periode</span><span class="en-delta bg">+6.2%</span></div></div>
+      <div class="en-card hl" style="border-color:#166534;background:#f0fdf4"><div class="en-label" style="color:#166534;font-weight:700">Gem. omzet nieuwe abo ★</div><div class="en-val">€ 184,20</div><div class="en-row"><span class="en-abs">per nieuwe abonnee</span><span class="en-delta bg">+3.1%</span></div></div>
+      <div class="en-card hl" style="border-color:#a32d2d;background:#fff1f2"><div class="en-label" style="color:#a32d2d;font-weight:700">Gem. omzet gechurnd abo ★</div><div class="en-val">€ 162,80</div><div class="en-row"><span class="en-abs">verloren per churn</span><span class="en-delta br">+1.8%</span></div></div>
+      <div class="en-card hl"><div class="en-label">Churn 1 mnd</div><div class="en-val">4.2%</div><div class="en-row"><span class="en-abs">5.058 spelers</span><span class="en-delta br">+0.2%</span></div></div>
+      <div class="en-card hl"><div class="en-label">Churn 3 mnd</div><div class="en-val">7.8%</div><div class="en-row"><span class="en-abs">9.396 spelers</span><span class="en-delta br">+0.5%</span></div></div>
+      <div class="en-card hl"><div class="en-label">Churn 6 mnd</div><div class="en-val">11.2%</div><div class="en-row"><span class="en-abs">13.494 spelers</span><span class="en-delta br">+0.3%</span></div></div>
+      <div class="en-card hl"><div class="en-label">Churn 12 mnd</div><div class="en-val">14.9%</div><div class="en-row"><span class="en-abs">17.955 spelers</span><span class="en-delta br">+0.8%</span></div></div>
+      <div class="en-card hl hl2"><div class="en-label">Churn 12+ mnd ★</div><div class="en-val">3.2%</div><div class="en-row"><span class="en-abs">3.856 spelers</span><span class="en-delta br">+0.4%</span></div></div>
+      <div class="en-card"><div class="en-label">Abo: Unlimited</div><div class="en-val">61%</div><div class="en-row"><span class="en-abs">73.481 abonnementen</span><span class="en-delta bg">+2.1%</span></div></div>
+      <div class="en-card"><div class="en-label">Abo: Limited</div><div class="en-val">39%</div><div class="en-row"><span class="en-abs">47.019 abonnementen</span><span class="en-delta br">-2.1%</span></div></div>
+      <div class="en-card hl"><div class="en-label">Abo: Incasso %</div><div class="en-val">94.2%</div><div class="en-row"><span class="en-abs">113.481 geslaagd</span><span class="en-delta br">-0.8%</span></div></div>
+    </div>
+  </div>
+
+  <div class="en-section">
+    <div class="en-section-title">Frequentie-index per merk (vergelijkbaar per draw-cyclus)</div>
+    <div class="en-grid">
+      <div class="en-card"><div class="en-label">Freq. index STL</div><div class="en-val">8/12</div></div>
+      <div class="en-card"><div class="en-label">Freq. index EJP</div><div class="en-val">14/51</div></div>
+      <div class="en-card"><div class="en-label">Freq. index KL</div><div class="en-val">14/51</div></div>
+      <div class="en-card"><div class="en-label">Freq. index LTT</div><div class="en-val">14/30</div></div>
+      <div class="en-card"><div class="en-label">Freq. index Lucky Day</div><div class="en-val">14/365</div></div>
+      <div class="en-card"><div class="en-label">Freq. index MJN</div><div class="en-val">14/52</div></div>
+    </div>
+  </div>
+
+  <div class="en-section">
+    <div class="en-section-title">Uitstroom verdieping — uitsplitsing reden accountbeëindiging</div>
+    <div class="en-grid">
+      <div class="en-card hl"><div class="en-label">Geanonimiseerd (&gt;3 jaar inactief)</div><div class="en-val">3.840</div><div class="en-row"><span class="en-abs">absoluut</span><span class="en-delta br">+3.1%</span></div></div>
+      <div class="en-card hl"><div class="en-label">Verwijderd op verzoek speler</div><div class="en-val">3.210</div><div class="en-row"><span class="en-abs">absoluut</span><span class="en-delta br">+5.8%</span></div></div>
+      <div class="en-card hl"><div class="en-label">Beëindigd door NLO (fraude/AVG)</div><div class="en-val">1.370</div><div class="en-row"><span class="en-abs">absoluut</span><span class="en-delta ba">+0.9%</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BRAND DISTRIBUTION PANEL -->
+<div class="en-panel">
+  <div class="en-title">Merkdistributie — spelerstier &amp; top combinaties</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+    <!-- LEFT: TIER PYRAMID -->
+    <div>
+      <div class="en-section-title" style="margin-bottom:10px">Spelers per merkentier</div>
+      <div class="tier-bar-wrap">
+        <div class="tier-row">
+          <div class="tier-label">1 merk</div>
+          <div class="tier-bar-bg"><div class="tier-bar-fill" style="width:68%;background:#bfdbfe"></div><span class="tier-bar-text">68% · 818.720</span></div>
+          <div class="tier-bar-abs"><span class="en-delta br" style="font-size:10px">-4.2%</span></div>
+        </div>
+        <div class="tier-row">
+          <div class="tier-label">2 merken</div>
+          <div class="tier-bar-bg"><div class="tier-bar-fill" style="width:20%;background:#93c5fd"></div><span class="tier-bar-text">20% · 240.800</span></div>
+          <div class="tier-bar-abs"><span class="en-delta bg" style="font-size:10px">+6.3%</span></div>
+        </div>
+        <div class="tier-row">
+          <div class="tier-label">3 merken</div>
+          <div class="tier-bar-bg"><div class="tier-bar-fill" style="width:9%;background:#60a5fa"></div><span class="tier-bar-text">9% · 108.360</span></div>
+          <div class="tier-bar-abs"><span class="en-delta bg" style="font-size:10px">+11.2%</span></div>
+        </div>
+        <div class="tier-row">
+          <div class="tier-label">4 merken</div>
+          <div class="tier-bar-bg"><div class="tier-bar-fill" style="width:2.5%;background:#3b82f6"></div><span class="tier-bar-text">2.5% · 30.100</span></div>
+          <div class="tier-bar-abs"><span class="en-delta bg" style="font-size:10px">+14.8%</span></div>
+        </div>
+        <div class="tier-row">
+          <div class="tier-label">5 merken</div>
+          <div class="tier-bar-bg"><div class="tier-bar-fill" style="width:0.5%;background:#1d4ed8"></div><span class="tier-bar-text">0.5% · 6.020</span></div>
+          <div class="tier-bar-abs"><span class="en-delta bg" style="font-size:10px">+18.4%</span></div>
+        </div>
+      </div>
+      <div style="font-size:10px;color:#9ca3af;margin-top:8px;line-height:1.5">Trend: spelers bewegen omhoog in tiers — 1-merk daalt, 2+ merk groeit. Cross-brand strategie werkt.</div>
+    </div>
+
+    <!-- RIGHT: TOP COMBINATIONS -->
+    <div>
+      <div class="en-section-title" style="margin-bottom:10px">Top 10 merkcombinaties — gerankt op # spelers</div>
+      <table class="combo-table">
+        <thead><tr><th>#</th><th>Combinatie</th><th>Spelers</th><th>%</th><th>vs vorige periode</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><div class="combo-badge"><span class="cb cb-stl">STL</span></div></td><td class="combo-abs">420.000</td><td class="combo-pct">34.9%</td><td class="combo-delta-r">-3.1%</td></tr>
+          <tr><td>2</td><td><div class="combo-badge"><span class="cb cb-ejp">EJP</span></div></td><td class="combo-abs">198.000</td><td class="combo-pct">16.4%</td><td class="combo-delta-r">-1.8%</td></tr>
+          <tr><td>3</td><td><div class="combo-badge"><span class="cb cb-stl">STL</span><span class="cb cb-ejp">EJP</span></div></td><td class="combo-abs">124.000</td><td class="combo-pct">10.3%</td><td class="combo-delta-g">+8.2%</td></tr>
+          <tr><td>4</td><td><div class="combo-badge"><span class="cb cb-kl">KL</span></div></td><td class="combo-abs">98.000</td><td class="combo-pct">8.1%</td><td class="combo-delta-r">-0.9%</td></tr>
+          <tr><td>5</td><td><div class="combo-badge"><span class="cb cb-stl">STL</span><span class="cb cb-kl">KL</span></div></td><td class="combo-abs">52.000</td><td class="combo-pct">4.3%</td><td class="combo-delta-g">+5.1%</td></tr>
+          <tr><td>6</td><td><div class="combo-badge"><span class="cb cb-stl">STL</span><span class="cb cb-ejp">EJP</span><span class="cb cb-kl">KL</span></div></td><td class="combo-abs">38.000</td><td class="combo-pct">3.2%</td><td class="combo-delta-g">+12.4%</td></tr>
+          <tr><td>7</td><td><div class="combo-badge"><span class="cb cb-ejp">EJP</span><span class="cb cb-kl">KL</span></div></td><td class="combo-abs">22.000</td><td class="combo-pct">1.8%</td><td class="combo-delta-g">+3.2%</td></tr>
+          <tr><td>8</td><td><div class="combo-badge"><span class="cb cb-stl">STL</span><span class="cb cb-ltt">LTT</span></div></td><td class="combo-abs">18.000</td><td class="combo-pct">1.5%</td><td class="combo-delta-g">+7.8%</td></tr>
+          <tr><td>9</td><td><div class="combo-badge"><span class="cb cb-stl">STL</span><span class="cb cb-ejp">EJP</span><span class="cb cb-ltt">LTT</span></div></td><td class="combo-abs">14.000</td><td class="combo-pct">1.2%</td><td class="combo-delta-g">+9.1%</td></tr>
+          <tr><td>10</td><td><div class="combo-badge"><span class="cb cb-stl">STL</span><span class="cb cb-ejp">EJP</span><span class="cb cb-kl">KL</span><span class="cb cb-ltt">LTT</span></div></td><td class="combo-abs">8.200</td><td class="combo-pct">0.7%</td><td class="combo-delta-g">+16.2%</td></tr>
+        </tbody>
+      </table>
+      <div style="font-size:10px;color:#9ca3af;margin-top:8px">Top 10 combinaties = 82% van alle spelers · STL is anker in 7 van 10 top combinaties</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- OWNED MEDIA EXECUTION LAYER -->
+<div class="ex-panel">
+  <div class="ex-title">Owned media execution layer — relatie kanaalactiviteit → KPI's in de tree</div>
+  <div class="ex-grid">
+
+    <div class="ex-col">
+      <div class="ex-phase ph-ob">Onboard</div>
+      <div class="ch-block">
+        <div class="ch-label"><span class="ch-dot ch-em"></span>Email (Braze)</div>
+        <div class="ch-item">Welcome-serie (3-step)<br><span class="ch-kpi">→ Activatie % · # Spelers</span></div>
+        <div class="ch-item">IDIN-herinnering D+1<br><span class="ch-kpi">→ Activatie %</span></div>
+        <div class="ch-item">Activatieherinnering D+3<br><span class="ch-kpi">→ Activatie %</span></div>
+      </div>
+      <div class="ch-block">
+        <div class="ch-label"><span class="ch-dot ch-pu"></span>App / Push</div>
+        <div class="ch-item">Activatie push na registratie<br><span class="ch-kpi">→ Activatie %</span></div>
+        <div class="ch-item">Retail scan → account prompt<br><span class="ch-kpi">→ Activatie %</span></div>
+      </div>
+      <div class="ch-block">
+        <div class="ch-label"><span class="ch-dot ch-tm"></span>Telemarketing</div>
+        <div class="ch-item">Welcome call (abo)<br><span class="ch-kpi">→ Activatie %</span></div>
+      </div>
+    </div>
+
+    <div class="ex-col">
+      <div class="ex-phase ph-ac">Active</div>
+      <div class="ch-block">
+        <div class="ch-label"><span class="ch-dot ch-em"></span>Email (Braze)</div>
+        <div class="ch-item">Draw-herinnering (pre-draw)<br><span class="ch-kpi">→ Speelmomenten · Recentie</span></div>
+        <div class="ch-item">Cross-sell campagne (merk X→Y)<br><span class="ch-kpi">→ Cross-brand conv. %</span></div>
+        <div class="ch-item">Upsell los → abo<br><span class="ch-kpi">→ Los→abo conv. % · LTV</span></div>
+        <div class="ch-item">Jackpot/event campagne<br><span class="ch-kpi">→ Freq. index · AOV</span></div>
+      </div>
+      <div class="ch-block">
+        <div class="ch-label"><span class="ch-dot ch-pu"></span>App / Push</div>
+        <div class="ch-item">Pre-draw push<br><span class="ch-kpi">→ Speelmomenten · Recentie</span></div>
+        <div class="ch-item">In-app cross-sell banner<br><span class="ch-kpi">→ Cross-brand conv. %</span></div>
+      </div>
+      <div class="ch-block">
+        <div class="ch-label"><span class="ch-dot ch-we"></span>Web</div>
+        <div class="ch-item">Personalisatie cross-brand widget<br><span class="ch-kpi">→ Cross-brand conv. % · AOV</span></div>
+      </div>
+    </div>
+
+    <div class="ex-col">
+      <div class="ex-phase ph-di">Disengaged</div>
+      <div class="ch-block">
+        <div class="ch-label"><span class="ch-dot ch-em"></span>Email (Braze)</div>
+        <div class="ch-item">Re-engagement flow (3-step)<br><span class="ch-kpi">→ Reactivatie % → # Spelers</span></div>
+        <div class="ch-item">Save-campagne (abo at-risk)<br><span class="ch-kpi">→ Churn rate · Customer value</span></div>
+        <div class="ch-item">Promotionele aanbieding<br><span class="ch-kpi">→ Reactivatie %</span></div>
+        <div class="ch-item">Exit-survey bij opzegging<br><span class="ch-kpi">→ Churnreden per merk</span></div>
+      </div>
+      <div class="ch-block">
+        <div class="ch-label"><span class="ch-dot ch-pu"></span>App / Push</div>
+        <div class="ch-item">Re-engagement push (At Risk)<br><span class="ch-kpi">→ Reactivatie %</span></div>
+      </div>
+      <div class="ch-block">
+        <div class="ch-label"><span class="ch-dot ch-tm"></span>Telemarketing</div>
+        <div class="ch-item">Retentiegesprek (abo)<br><span class="ch-kpi">→ Churn rate · Reactivatie %</span></div>
+      </div>
+    </div>
+
+    <div class="ex-col">
+      <div class="ex-phase ph-in">Inactive</div>
+      <div class="ch-block">
+        <div class="ch-label"><span class="ch-dot ch-em"></span>Email (Braze)</div>
+        <div class="ch-item">Win-back campagne (Sleeper)<br><span class="ch-kpi">→ Reactivatie % → # Spelers</span></div>
+        <div class="ch-item">High-value aanbieding<br><span class="ch-kpi">→ Reactivatie % · AOV</span></div>
+        <div class="ch-item">Laatste kans-mail (&lt;3jr anon.)<br><span class="ch-kpi">→ Uitstroom (absoluut)</span></div>
+      </div>
+      <div class="ch-block">
+        <div class="ch-label"><span class="ch-dot ch-pu"></span>App / Push</div>
+        <div class="ch-item">Win-back push (app actief)<br><span class="ch-kpi">→ Reactivatie %</span></div>
+      </div>
+      <div class="ch-block">
+        <div class="ch-label"><span class="ch-dot ch-tm"></span>Telemarketing</div>
+        <div class="ch-item">Win-back call (hoog-waardige Sleepers)<br><span class="ch-kpi">→ Reactivatie % · LTV</span></div>
+      </div>
+    </div>
+
+    <div class="ex-col">
+      <div class="ex-phase ph-ui">Uitstroom</div>
+      <div class="ch-block">
+        <div class="ch-label"><span class="ch-dot ch-em"></span>Email (Braze)</div>
+        <div class="ch-item">Pre-churn save-aanbieding<br><span class="ch-kpi">→ Churn rate (abo)</span></div>
+        <div class="ch-item">Exit-survey na opzegging<br><span class="ch-kpi">→ Uitstroom (absoluut)</span></div>
+      </div>
+      <div class="ch-block">
+        <div class="ch-label"><span class="ch-dot ch-tm"></span>Telemarketing</div>
+        <div class="ch-item">Save-call bij opzegging<br><span class="ch-kpi">→ Churn rate (abo)</span></div>
+      </div>
+      <div style="margin-top:8px;font-size:9px;color:#9ca3af;border-top:1px solid #f3f4f6;padding-top:6px;line-height:1.5">
+        Na geanonimisering: niet meer bereikbaar. Herinstroom via Onboard als nieuw account.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div style="display:flex;gap:12px;flex-wrap:wrap;font-size:11px;margin-bottom:8px;align-items:center">
+  <span style="font-size:10px;font-weight:600;color:#374151">KPI type:</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700;background:#eff6ff;color:#1d4ed8">Sturend</span><span style="font-size:10px;color:#6b7280">= direct beïnvloedbaar via campagne of productbeslissing</span></span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;padding:1px 6px;border-radius:4px;font-size:8px;font-weight:700;background:#f3f4f6;color:#6b7280">Verklarend</span><span style="font-size:10px;color:#6b7280">= verklaart waarom iets beweegt, niet direct stuurbaar</span></span>
+</div>
+<div class="legend">
+  <span><span class="ld" style="background:#dcfce7;border:1px solid #16a34a"></span>Positief / doel gehaald</span>
+  <span><span class="ld" style="background:#fee2e2;border:1px solid #dc2626"></span>Negatief / aandacht vereist</span>
+  <span><span class="ld-sq"></span>Roze vak = metric beweegt verkeerde kant op</span>
+  <span style="color:#111827;font-weight:600">★</span><span>= nieuw in v02</span>
+  <span>Segment-filter wijzigt alle waarden in tree + bewegingenpanel gelijktijdig</span>
+  <span>Coupon date / Draw date toggle is globaal van toepassing op omzet-gerelateerde KPI's</span>
+</div>
+
+</div><!-- /page -->
+
+<script>
+// ── TREE DATA (Lifecycle: All / Active / Disengaged / Inactive) ──
+const SEG = {
+  all:{
+    n0:['+7.4%','€ 85.240.000',true],n1:['+2.3%','1.204.000 spelers',true],n2:['+5.3%','€ 70,80',true],
+    n3:['+8.1%','€ 8,50',true],n4:['+11.4%','€ 22,65',true],n5:['+2.1%','8,3 mnd actief',true],
+    l0:['+15.2%','68,4%',true],l1:['-6.3%','4,2 /mnd',false],l2:['+18.7%','14,3 dgn',false],
+    l3:['+12.1%','€ 6,50',true],l4:['+7.4%','3,3 loten',true],
+    l6:['-8.1%','34,2%',false],l7:['-5.3%','8,5%',false],
+    l8:['+22.4%','16,7%',false],l9:['+15.3%','9,8 dgn',false]
+  },
+  onboard:{
+    n0:['+18.2%','€ 4.820.000',true],n1:['+18.2%','84.600 spelers',true],n2:['n.v.t.','n.v.t.',true],
+    n3:['n.v.t.','n.v.t.',true],n4:['+8.4%','€ 18,40',true],n5:['n.v.t.','n.v.t.',true],
+    l0:['n.v.t.','n.v.t.',true],l1:['n.v.t.','n.v.t.',true],l2:['n.v.t.','n.v.t.',true],
+    l3:['+8.4%','€ 18,40',true],l4:['+3.2%','2,4 loten',true],
+    l6:['-2.1%','18,4%',false],l7:['-1.4%','6,8%',false],
+    l9:['+4.2%','3,2 dgn',true],
+    n1a:['+18.2%','84.600',true],n_netto:['+2.3%','+76.180',true],n_netto:['+18.2%','+84.600',true],n_netto:['+4.1%','+52.400',true],n_netto:['-6.8%','-14.200',false],n_netto:['-2.1%','-4.800',false],n_netto:['+18.2%','+84.600 netto',true],n1b:['n.v.t.','n.v.t.',true]
+  },
+  active:{
+    n0:['+12.1%','€ 61.400.000',true],n1:['+4.1%','842.000 spelers',true],n2:['+7.7%','€ 72,90',true],
+    n3:['+9.8%','€ 9,20',true],n4:['+13.2%','€ 24,80',true],n5:['+3.2%','9,8 mnd actief',true],
+    l0:['+18.4%','72,1%',true],l1:['+2.1%','5,4 /mnd',true],l2:['-3.2%','11,2 dgn',true],
+    l3:['+14.3%','€ 7,20',true],l4:['+9.1%','3,9 loten',true],
+    l6:['-6.3%','28,4%',false],l7:['-4.1%','7,2%',false],
+    l9:['+3.2%','7,4 dgn',false],
+    n1a:['+12.1%','52.400',true],n_netto:['+4.1%','+52.400 netto',true],n1b:['+0.8%','6.200',false]
+  },
+  dis:{
+    n0:['-3.2%','€ 15.800.000',false],n1:['-6.8%','241.000 spelers',false],n2:['+4.1%','€ 65,50',true],
+    n3:['-4.2%','€ 6,80',false],n4:['+5.3%','€ 19,40',true],n5:['-1.8%','6,2 mnd actief',false],
+    l0:['-9.3%','52,4%',false],l1:['-18.7%','2,1 /mnd',false],l2:['+32.4%','18,9 dgn',false],
+    l3:['+6.2%','€ 5,80',true],l4:['+4.1%','2,8 loten',true],
+    l6:['-12.4%','41,2%',false],l7:['-2.1%','9,8%',false],
+    l9:['+38.1%','14,6 dgn',false],
+    n1a:['-6.8%','14.200',false],n_netto:['-6.8%','-14.200 netto',false],n1b:['+12.4%','4.210',false]
+  },
+  inact:{
+    n0:['-8.9%','€ 8.040.000',false],n1:['-2.1%','121.000 spelers',false],n2:['-2.4%','€ 66,40',false],
+    n3:['-9.1%','€ 5,10',false],n4:['+2.1%','€ 17,20',true],n5:['-4.2%','5,1 mnd actief',false],
+    l0:['-14.2%','41,3%',false],l1:['-28.4%','1,2 /mnd',false],l2:['+48.3%','22,4 dgn',false],
+    l3:['+2.4%','€ 5,10',true],l4:['+1.8%','2,2 loten',true],
+    l6:['-4.2%','38,1%',false],l7:['+1.2%','11,2%',false],
+    l9:['+52.3%','18,9 dgn',false],
+    n1a:['-2.1%','4.800',false],n_netto:['-2.1%','-4.800 netto',false],n1b:['+8.1%','2.370',false]
+  }
+};
+
+// ── PANEL 1: CVM (Active / At Risk / Sleeper) ──
+const MV1 = {
+  all:{
+    lbl:'Alle spelers',
+    in:[
+      ['New — eerste aankoop gedaan','+35.420','+2.9%',true],
+      ['Revived — At risk → Repeater (heractivering)','+9.840','+0.8%',true],
+      ['Recovered — Sleeper → Repeater (winback)','+3.210','+0.3%',true]
+    ],
+    pos_out:[],
+    neg_out:[
+      ['→ At risk — herhaalaankoop uitgebleven','-48.200','-4.0%'],
+      ['→ Sleeper — langdurig geen aankoop','-21.600','-1.8%'],
+      ['→ Uitstroom — geanonimiseerd (>3 jr)','-8.420','-0.7%']
+    ]
+  },
+  new:{
+    lbl:'New (eerste aankoop, geen eerdere)',
+    in:[
+      ['← Geregistreerd → New (eerste transactie)','+35.420','+4.2%',true]
+    ],
+    pos_out:[
+      ['↑ New → Repeater (herhaalaankoop)','+24.180','+2.9%']
+    ],
+    neg_out:[
+      ['→ At risk — geen herhaalaankoop','-8.640','-1.0%'],
+      ['→ Sleeper — langdurig inactief na 1e aankoop','-2.600','-0.3%']
+    ]
+  },
+  repeater:{
+    lbl:'Repeater (herhalende aankopen, doel-segment)',
+    in:[
+      ['← New → Repeater (herhaalaankoop gedaan)','+24.180','+2.9%',true],
+      ['← Revived → Repeater (na at risk)','+9.840','+1.2%',true],
+      ['← Recovered → Repeater (na sleeper/winback)','+3.210','+0.4%',true]
+    ],
+    pos_out:[],
+    neg_out:[
+      ['→ At risk — inactiviteit (herhaalaankoop gestopt)','-20.160','-2.4%'],
+      ['→ Sleeper — langdurig geen aankoop','-6.840','-0.8%']
+    ]
+  },
+  revived:{
+    lbl:'Revived / Recovered (teruggewonnen spelers)',
+    in:[
+      ['← At risk → Revived (herhaalaankoop na risico)','+9.840','+4.1%',true],
+      ['← Sleeper → Recovered (winback geslaagd)','+3.210','+2.7%',true]
+    ],
+    pos_out:[
+      ['↑ Revived/Recovered → Repeater (behouden)','+13.050','+5.4%']
+    ],
+    neg_out:[
+      ['→ At risk — heractivering niet vastgehouden','-3.200','-1.3%'],
+      ['→ Sleeper — terugval na winback','-1.840','-0.8%']
+    ]
+  },
+  atrisk:{
+    lbl:'At risk (inactiviteit, churn risico)',
+    in:[
+      ['← Repeater → At risk (herhaalaankoop gestopt)','+20.160','+8.4%',false],
+      ['← Revived terugval → At risk','+3.200','+1.3%',false]
+    ],
+    pos_out:[
+      ['↑ Revived → Repeater (heractivering geslaagd)','+9.840','+4.1%']
+    ],
+    neg_out:[
+      ['→ Sleeper — geen aankoop (langdurig)','-8.960','-3.7%']
+    ]
+  },
+  sleeper:{
+    lbl:'Sleeper (langdurig inactief, 180 dgn – 3 jr)',
+    in:[
+      ['← Repeater → Sleeper','+6.840','+5.7%',false],
+      ['← At risk → Sleeper (geen heractivering)','+8.960','+7.4%',false]
+    ],
+    pos_out:[
+      ['↑ Recovered → Repeater (winback geslaagd)','+3.210','+2.7%']
+    ],
+    neg_out:[
+      ['→ Uitstroom — geanonimiseerd (>3 jaar)','-8.420','-7.0%']
+    ]
+  }
+};
+
+// ── PANEL 2: Lifecycle (Active / Disengaged / Inactive) ──
+const MV2 = {
+  all:{
+    lbl:'Alle spelers',
+    in:[
+      ['Activatie % — onboard → active','+45.680','+3.8%',true],
+      ['Reactivatie % — disengaged → active','+14.440','+1.2%',true],
+      ['Reactivatie % — inactive → active (winback)','+7.220','+0.6%',true]
+    ],
+    pos_out:[],
+    neg_out:[
+      ['→ Disengaged','-49.360','-4.1%'],
+      ['→ Inactive','-21.670','-1.8%'],
+      ['→ Uitstroom (account beëindigd)','-8.420','-0.7%']
+    ]
+  },
+  active:{
+    lbl:'Active segment',
+    in:[
+      ['Activatie % — onboard → active','+45.680','+5.4%',true],
+      ['Reactivatie % — disengaged → active','+14.440','+1.7%',true],
+      ['Reactivatie % — inactive → active (winback)','+7.220','+0.9%',true]
+    ],
+    pos_out:[],
+    neg_out:[
+      ['→ Disengaged','-20.200','-2.4%'],
+      ['→ Inactive','-7.580','-0.9%']
+    ]
+  },
+  dis:{
+    lbl:'Disengaged segment',
+    in:[
+      ['← Repeater → At risk','+20.200','+8.4%',false]
+    ],
+    pos_out:[
+      ['↑ Revived/Recovered → Repeater','+14.440','+6.0%']
+    ],
+    neg_out:[
+      ['→ Inactive','-6.740','-2.8%'],
+      ['→ Uitstroom (account beëindigd)','-2.840','-1.2%']
+    ]
+  },
+  inact:{
+    lbl:'Inactive segment',
+    in:[
+      ['← Repeater → Sleeper','+7.580','+6.3%',false],
+      ['← At risk → Sleeper','+6.740','+5.6%',false]
+    ],
+    pos_out:[
+      ['↑ Recovered → Repeater (winback)','+7.220','+6.0%']
+    ],
+    neg_out:[
+      ['→ Uitstroom (account beëindigd)','-8.420','-7.0%']
+    ]
+  }
+};
+
+const NODES=['n0','n1','n2','n3','n4','n5','n_netto','n1a','n1b','l0','l1','l2','l3','l4','l6','l7','l9'];
+
+function renderTree(k){
+  const d=SEG[k];
+  NODES.forEach(id=>{
+    const[delta,val,good]=d[id];
+    const db=document.getElementById('d-'+id);
+    const vb=document.getElementById('v-'+id);
+    if(db){db.textContent=delta;db.className='badge '+(good?'bg':'br');}
+    if(vb)vb.textContent=val;
+  });
+}
+
+function mvRow(n,abs,pct,good){
+  const cls=good?'mvval-g':'mvval-r';
+  return `<div class="mv-row"><span>${n}</span><div class="mv-vals"><span class="mv-abs">${abs}</span><span class="${cls}">${pct}</span></div></div>`;
+}
+function mvRowPos(n,abs,pct){
+  return `<div class="mv-row"><span>${n}</span><div class="mv-vals"><span class="mv-abs">${abs}</span><span class="mvval-g">${pct}</span></div></div>`;
+}
+function mvRowNeg(n,abs,pct){
+  return `<div class="mv-row"><span>${n}</span><div class="mv-vals"><span class="mv-abs">${abs}</span><span class="mvval-r">${pct}</span></div></div>`;
+}
+
+function renderOutflow(posId,negId,pos_out,neg_out){
+  const posEl=document.getElementById(posId);
+  const negEl=document.getElementById(negId);
+  const hasPos=pos_out&&pos_out.length>0;
+  if(hasPos){
+    posEl.innerHTML=`<div class="mv-out-pos-title"><span class="mvdot-sm-g"></span>Positieve uitstroom — naar betere staat</div>`+pos_out.map(([n,a,p])=>mvRowPos(n,a,p)).join('');
+  } else {
+    posEl.innerHTML='';
+  }
+  if(neg_out&&neg_out.length>0){
+    negEl.innerHTML=(hasPos?`<div class="mv-out-section">`:'')
+      +`<div class="mv-out-neg-title"><span class="mvdot-sm-r"></span>Negatieve uitstroom — naar slechtere staat</div>`
+      +neg_out.map(([n,a,p])=>mvRowNeg(n,a,p)).join('')
+      +(hasPos?`</div>`:'');
+  } else {
+    negEl.innerHTML='';
+  }
+}
+
+function renderMV1(k){
+  const d=MV1[k];
+  document.getElementById('mv1-seg-lbl').textContent=d.lbl;
+  document.getElementById('mv1-in').innerHTML=d.in.map(([n,a,p,g])=>mvRow(n,a,p,g)).join('');
+  renderOutflow('mv1-pos-out','mv1-neg-out',d.pos_out,d.neg_out);
+}
+
+function renderMV2(k){
+  const d=MV2[k];
+  document.getElementById('mv2-seg-lbl').textContent=d.lbl;
+  document.getElementById('mv2-in').innerHTML=d.in.map(([n,a,p,g])=>mvRow(n,a,p,g)).join('');
+  renderOutflow('mv2-pos-out','mv2-neg-out',d.pos_out,d.neg_out);
+}
+
+function setSeg(el,k){
+  document.querySelectorAll('#seg-tg .tb').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  renderTree(k);
+  // Also sync panel 2 if key exists there
+  const k2=MV2[k]?k:'all';
+  renderMV2(k2);
+  document.querySelectorAll('#seg2-tg .tb').forEach(b=>{
+    b.classList.toggle('on',b.getAttribute('onclick').includes("'"+k2+"'"));
+  });
+}
+
+function setSeg1(el,k){
+  document.querySelectorAll('#seg1-tg .tb').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  const key = MV1[k] ? k : 'all';
+  renderMV1(key);
+  document.getElementById('mv1-seg-lbl').textContent = MV1[key].lbl;
+}
+
+function setSeg2(el,k){
+  document.querySelectorAll('#seg2-tg .tb').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  renderMV2(k);
+}
+
+function tog(el){
+  el.closest('.tg').querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+}
+
+function init(){
+  try { renderTree('all'); } catch(e){}
+  try { renderMV1('all'); } catch(e){}
+  try { renderMV2('all'); } catch(e){}
+  // showTrend is in block 1 - safe call
+  setTimeout(function(){
+    try { showTrend('n0','€ Base waarde'); } catch(e){}
+    try { drawWaterfall(); } catch(e){}
+  }, 50);
+  setTimeout(function(){
+    try { drawWaterfall(); } catch(e){}
+  }, 600);
+}
+
+// ── WATERFALL CHART ──
+const WF_DATA = [
+  { label: 'Start\nApr 2024', value: 74.2, type: 'total', detail: 'Startwaarde vorige periode · € 74,2M' },
+  { label: 'Instroom\n(+spelers)', value: 4.8, type: 'pos', detail: 'Netto nieuwe spelers × gem. LTV · +84.600 new/revived/recovered' },
+  { label: 'Uitstroom\n(−spelers)', value: -1.6, type: 'neg', detail: 'Verloren spelers geanonimiseerd (>3jr) · −8.420 accounts' },
+  { label: 'Omzet /\nspeler', value: 2.8, type: 'pos', detail: 'Activity rate + speelmomenten gecombineerd · +8.1% over actieve basis' },
+  { label: 'AOV\nstijging', value: 4.8, type: 'pos', detail: 'Gem. orderwaarde +11.4% · prijs/lot + loten/aankoop + kortingsreductie samen' },
+  { label: 'Lifetime\nverbetering', value: 1.0, type: 'pos', detail: 'Gem. lifetime +0.5 mnd + betere aankooprecentie · spelers blijven langer actief' },
+  { label: 'Eind\nMrt 2026', value: 86.0, type: 'total', detail: 'Eindwaarde huidige periode · € 86,0M' }
+];
+
+function drawWaterfall() {
+  const canvas = document.getElementById('wf-canvas');
+  if(!canvas) return;
+  const container = document.getElementById('wf-container') || canvas.parentElement;
+  const W = container.getBoundingClientRect().width || container.offsetWidth || 700;
+  const H = 300;
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,W,H);
+
+  const PAD = { top: 20, right: 20, bottom: 50, left: 52 };
+  const cW = W - PAD.left - PAD.right;
+  const cH = H - PAD.top - PAD.bottom;
+  const n = WF_DATA.length;
+  const barW = Math.floor(cW / n * 0.65);
+  const gap = Math.floor(cW / n);
+
+  // Compute floats
+  let running = 0;
+  const bars = WF_DATA.map((d, i) => {
+    if(d.type === 'total') {
+      running = d.value;
+      return { float: 0, height: d.value, running };
+    }
+    const base = d.value >= 0 ? running : running + d.value;
+    running += d.value;
+    return { float: base, height: Math.abs(d.value), running };
+  });
+
+  const allVals = bars.map(b => b.float + b.height);
+  const minV = 60;
+  const maxV = 92;
+  const scX = i => PAD.left + i * gap + gap/2;
+  const scY = v => PAD.top + cH - ((v - minV) / (maxV - minV)) * cH;
+  const scH = v => (v / (maxV - minV)) * cH;
+
+  // Grid
+  ctx.strokeStyle = '#f3f4f6';
+  ctx.lineWidth = 1;
+  ctx.fillStyle = '#9ca3af';
+  ctx.font = '10px -apple-system,system-ui,sans-serif';
+  ctx.textAlign = 'right';
+  for(let i = 0; i <= 5; i++) {
+    const v = minV + (maxV - minV) * (i / 5);
+    const y = scY(v);
+    ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(W - PAD.right, y); ctx.stroke();
+    ctx.fillText('€' + v.toFixed(0) + 'M', PAD.left - 4, y + 3);
+  }
+
+  // Connector lines between bars
+  ctx.strokeStyle = '#d1d5db';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([3, 3]);
+  for(let i = 0; i < n - 1; i++) {
+    const b = bars[i];
+    const topY = scY(b.float + b.height);
+    ctx.beginPath();
+    ctx.moveTo(scX(i) + barW/2, topY);
+    ctx.lineTo(scX(i+1) - barW/2, topY);
+    ctx.stroke();
+  }
+  ctx.setLineDash([]);
+
+  // Bars
+  bars.forEach((b, i) => {
+    const d = WF_DATA[i];
+    const x = scX(i) - barW/2;
+    const y = scY(b.float + b.height);
+    const h = scH(b.height);
+    let color;
+    if(d.type === 'total') color = '#6b7280';
+    else if(d.type === 'pos') color = '#166534';
+    else color = '#dc2626';
+
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.rect(x, y, barW, h);
+    ctx.fill();
+
+    // Value label on bar
+    ctx.fillStyle = '#fff';
+    ctx.textAlign = 'center';
+    ctx.font = 'bold 9px -apple-system,system-ui,sans-serif';
+    if(h > 16) {
+      const txt = d.type === 'total' ? '€'+d.value.toFixed(0)+'M' : (d.value > 0 ? '+' : '') + d.value.toFixed(1) + 'M';
+      ctx.fillText(txt, x + barW/2, y + h/2 + 3);
+    }
+  });
+
+  // X labels
+  ctx.fillStyle = '#6b7280';
+  ctx.font = '9px -apple-system,system-ui,sans-serif';
+  ctx.textAlign = 'center';
+  WF_DATA.forEach((d, i) => {
+    const lines = d.label.split('\n');
+    lines.forEach((line, li) => {
+      ctx.fillText(line, scX(i), H - PAD.bottom + 14 + li * 13);
+    });
+  });
+
+  // Tooltip
+  canvas.onmousemove = function(e) {
+    const rect = canvas.getBoundingClientRect();
+    const mx = (e.clientX - rect.left) * (W / rect.width);
+    let hit = -1;
+    WF_DATA.forEach((_, i) => { if(Math.abs(mx - scX(i)) < gap/2) hit = i; });
+    if(hit < 0) { canvas._wftip && (canvas._wftip.style.display = 'none'); return; }
+    let tip = canvas._wftip;
+    if(!tip) {
+      tip = document.createElement('div');
+      tip.style.cssText = 'position:absolute;background:#111827;color:#fff;font-size:10px;padding:6px 10px;border-radius:6px;pointer-events:none;z-index:10;white-space:nowrap;line-height:1.6;max-width:220px;white-space:normal';
+      container.style.position = 'relative';
+      container.appendChild(tip);
+      canvas._wftip = tip;
+    }
+    const d = WF_DATA[hit];
+    const b = bars[hit];
+    const sign = d.type === 'total' ? '' : (d.value >= 0 ? '+' : '');
+    tip.innerHTML = '<strong>' + d.label.replace('\n', ' ') + '</strong><br>' +
+      sign + d.value.toFixed(1) + 'M<br>' +
+      '<span style="color:#9ca3af">' + d.detail + '</span>';
+    tip.style.left = (scX(hit) - tip.offsetWidth/2 + 10) + 'px';
+    tip.style.top = (scY(b.float + b.height) - 60) + 'px';
+    tip.style.display = 'block';
+  };
+  canvas.onmouseleave = () => { canvas._wftip && (canvas._wftip.style.display = 'none'); };
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',init);
+} else {
+  init();
+}
+</script>
+<script>
+const MONTHS = ['Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec','Jan','Feb','Mrt'];
+
+const TREND_DATA = {
+  n0: { unit:'€', vals:[74.2,76.8,78.1,79.4,80.2,81.0,80.6,82.3,83.4,84.1,84.8,85.2], prev:[68.4,70.1,71.2,72.0,73.1,73.8,74.0,74.4,74.8,75.2,75.8,74.2], color:'#185fa5' },
+  n1: { unit:'K', vals:[1.14,1.15,1.16,1.17,1.17,1.18,1.18,1.19,1.19,1.20,1.20,1.20], prev:[1.09,1.10,1.11,1.12,1.12,1.13,1.13,1.14,1.14,1.14,1.14,1.14], color:'#185fa5' },
+  n2: { unit:'€', vals:[63.2,64.1,65.4,66.2,67.0,67.8,68.2,69.1,70.0,70.4,71.2,72.9], prev:[58.4,59.2,60.1,61.0,61.8,62.4,62.8,63.2,63.8,64.2,64.8,63.2], color:'#534ab7' },
+  n3: { unit:'€', vals:[7.80,7.90,8.00,8.10,8.10,8.20,8.20,8.30,8.40,8.50,8.60,8.50], prev:[7.10,7.20,7.30,7.40,7.50,7.60,7.65,7.70,7.75,7.78,7.80,7.80], color:'#0f6e56' },
+  n4: { unit:'€', vals:[19.8,20.2,20.8,21.1,21.4,21.8,22.0,22.2,22.5,22.6,22.8,24.8], prev:[17.8,18.2,18.6,19.0,19.2,19.4,19.6,19.8,20.0,20.1,20.2,19.8], color:'#854f0b' },
+  n5: { unit:'mnd', vals:[7.8,7.9,8.0,8.1,8.2,8.4,8.5,8.6,8.8,9.0,9.4,9.8], prev:[7.2,7.3,7.4,7.5,7.6,7.7,7.8,7.9,8.0,8.0,8.1,7.8], color:'#534ab7' },
+  l0: { unit:'%', vals:[61.2,62.0,63.1,64.0,64.8,65.2,65.9,66.8,68.0,69.2,71.0,72.1], prev:[56.4,57.2,58.0,58.8,59.4,60.0,60.6,61.2,62.0,62.8,63.6,61.2], color:'#3b6d11' },
+  l1: { unit:'/mnd', vals:[4.6,4.7,4.7,4.8,4.9,5.0,5.0,5.1,5.1,5.2,5.3,5.4], prev:[4.4,4.4,4.5,4.5,4.6,4.6,4.7,4.7,4.8,4.8,4.8,4.6], color:'#3b6d11' },
+  l2: { unit:'dgn', vals:[14.8,14.4,14.2,13.9,13.6,13.4,13.1,12.8,12.4,12.1,11.8,11.2], prev:[15.8,15.6,15.4,15.2,15.0,14.8,14.6,14.4,14.2,14.0,13.8,14.8], color:'#854f0b' },
+  l3: { unit:'€', vals:[5.80,5.90,6.00,6.10,6.20,6.30,6.40,6.50,6.60,6.70,6.90,7.20], prev:[5.20,5.30,5.40,5.50,5.60,5.68,5.72,5.76,5.80,5.82,5.84,5.80], color:'#3b6d11' },
+  l4: { unit:'loten', vals:[3.2,3.3,3.3,3.4,3.4,3.5,3.5,3.6,3.6,3.7,3.8,3.9], prev:[2.9,3.0,3.0,3.1,3.1,3.2,3.2,3.2,3.3,3.3,3.3,3.2], color:'#3b6d11' },
+  l5: { unit:'', vals:[1.04,1.05,1.05,1.06,1.06,1.07,1.07,1.08,1.09,1.09,1.10,1.12], prev:[1.01,1.02,1.02,1.03,1.03,1.04,1.04,1.04,1.05,1.05,1.05,1.04], color:'#3b6d11' },
+  l6: { unit:'%', vals:[34.2,33.8,33.2,32.8,32.1,31.6,31.0,30.4,29.8,29.4,28.9,28.4], prev:[36.8,36.4,36.0,35.6,35.2,34.8,34.4,34.0,33.8,33.6,33.4,34.2], color:'#854f0b' },
+  l7: { unit:'%', vals:[9.8,9.6,9.4,9.2,9.0,8.8,8.6,8.4,8.2,8.0,7.6,7.2], prev:[11.2,11.0,10.8,10.6,10.4,10.2,10.0,9.8,9.6,9.6,9.8,9.8], color:'#854f0b' },
+  l8: { unit:'%', vals:[7.2,7.4,7.6,7.8,7.9,8.0,8.1,8.1,8.2,8.2,8.2,8.2], prev:[8.4,8.2,8.0,7.8,7.8,7.6,7.4,7.2,7.2,7.2,7.2,7.2], color:'#dc2626' },
+  l9: { unit:'dgn', vals:[6.2,6.4,6.6,6.8,6.9,7.0,7.1,7.2,7.2,7.3,7.3,7.4], prev:[5.8,5.9,6.0,6.1,6.2,6.2,6.3,6.3,6.2,6.2,6.2,6.2], color:'#dc2626' },
+  l10:{ unit:'', vals:[1420,1480,1520,1560,1600,1640,1660,1700,1740,1780,1810,1840], prev:[1620,1600,1580,1560,1540,1520,1500,1480,1460,1440,1430,1420], color:'#dc2626' },
+  n_netto:{ unit:'K', vals:[42,48,54,58,62,64,66,68,70,72,74,76], prev:[32,36,40,44,48,52,54,56,58,60,62,42], color:'#185fa5' },
+  n1a:{ unit:'K', vals:[62,68,72,76,78,80,81,82,83,84,85,85], prev:[54,58,62,64,66,68,70,72,74,76,78,62], color:'#3b6d11' },
+  n1b:{ unit:'', vals:[8840,8620,8400,8300,8250,8180,8100,8020,7980,7920,7840,8420], prev:[9200,9100,9000,8900,8800,8700,8600,8500,8400,8300,8200,8840], color:'#dc2626' }
+};
+
+let activeTrendId = null;
+
+function showTrend(id, label){
+  const d = TREND_DATA[id];
+  if(!d) return;
+
+  // Highlight active node
+  if(activeTrendId){
+    const prev = document.querySelector('[onclick*="showTrend(\''+activeTrendId+'\'"]');
+    if(prev) prev.style.boxShadow = '';
+  }
+  activeTrendId = id;
+  const el = document.querySelector('[onclick*="showTrend(\''+id+'\'"]');
+  if(el) el.style.boxShadow = '0 0 0 2px #185fa5';
+
+  // Show panel
+  const panel = document.getElementById('trend-panel');
+  panel.style.display = 'block';
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+  document.getElementById('trend-title').textContent = label;
+
+  // Build stats
+  const vals = d.vals;
+  const last = vals[vals.length-1];
+  const first = vals[0];
+  const min = Math.min(...vals);
+  const max = Math.max(...vals);
+  const avg = (vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1);
+  const trend12 = ((last-first)/first*100).toFixed(1);
+  const trendGood = parseFloat(trend12) > 0;
+  const isNegMetric = ['l2','l6','l7','l9','n1b'].includes(id);
+  const isGood = isNegMetric ? !trendGood : trendGood;
+
+  document.getElementById('trend-stats').innerHTML = `
+    <div style="background:#f9fafb;border-radius:8px;padding:10px 12px;margin-bottom:8px">
+      <div style="font-size:10px;color:#9ca3af;margin-bottom:2px">Huidige waarde</div>
+      <div style="font-size:20px;font-weight:700;color:#111827">${last}${d.unit==='€'?'':' '+d.unit}</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <div style="background:#f9fafb;border-radius:8px;padding:8px 10px">
+        <div style="font-size:9px;color:#9ca3af">12-mnd trend</div>
+        <div style="font-size:13px;font-weight:700;color:${isGood?'#166534':'#dc2626'}">${trend12>0?'+':''}${trend12}%</div>
+      </div>
+      <div style="background:#f9fafb;border-radius:8px;padding:8px 10px">
+        <div style="font-size:9px;color:#9ca3af">Gem. waarde</div>
+        <div style="font-size:13px;font-weight:700;color:#374151">${avg}</div>
+      </div>
+      <div style="background:#f9fafb;border-radius:8px;padding:8px 10px">
+        <div style="font-size:9px;color:#9ca3af">Min (12 mnd)</div>
+        <div style="font-size:13px;font-weight:700;color:#374151">${min}</div>
+      </div>
+      <div style="background:#f9fafb;border-radius:8px;padding:8px 10px">
+        <div style="font-size:9px;color:#9ca3af">Max (12 mnd)</div>
+        <div style="font-size:13px;font-weight:700;color:#374151">${max}</div>
+      </div>
+    </div>
+    <div style="margin-top:8px;padding:8px 10px;border-radius:8px;background:${isGood?'#f0fdf4':'#fff1f2'};border:1px solid ${isGood?'#bbf7d0':'#fecdd3'}">
+      <div style="font-size:10px;font-weight:600;color:${isGood?'#166534':'#dc2626'}">${isGood ? (isNegMetric ? 'Gunstige daling ↓' : 'Positieve trend ↑') : (isNegMetric ? 'Ongunstige stijging ↑' : 'Aandacht vereist ↓')}</div>
+      <div style="font-size:10px;color:${isGood?'#166534':'#dc2626'};margin-top:2px">Richting laatste 12 maanden</div>
+    </div>`;
+
+  // Draw pure canvas chart — two lines: selected vs compared period
+  const canvas = document.getElementById('trend-chart');
+  const W = canvas.parentElement.offsetWidth || 700;
+  const H = 220;
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,W,H);
+
+  const prev = d.prev || [];
+  const allVals = [...vals, ...prev].filter(v=>v!==undefined);
+  const PAD = {top:16, right:20, bottom:32, left:48};
+  const cW = W - PAD.left - PAD.right;
+  const cH = H - PAD.top - PAD.bottom;
+  const minV = Math.min(...allVals) * 0.95;
+  const maxV = Math.max(...allVals) * 1.05;
+  const scaleX = i => PAD.left + (i/(vals.length-1)) * cW;
+  const scaleY = v => PAD.top + cH - ((v-minV)/(maxV-minV)) * cH;
+
+  // Grid lines + Y labels
+  ctx.strokeStyle = '#f3f4f6';
+  ctx.lineWidth = 1;
+  ctx.fillStyle = '#9ca3af';
+  ctx.font = '10px -apple-system,system-ui,sans-serif';
+  ctx.textAlign = 'right';
+  for(let i=0;i<=4;i++){
+    const v = minV + (maxV-minV)*(i/4);
+    const y = scaleY(v);
+    ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(W-PAD.right, y); ctx.stroke();
+    ctx.fillText(parseFloat(v.toFixed(1)), PAD.left-4, y+3);
+  }
+
+  // X labels
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#9ca3af';
+  MONTHS.forEach((m,i)=>{ ctx.fillText(m, scaleX(i), H-8); });
+
+  // ── Draw compared period (dashed gray) ──
+  const cmpOn = typeof cmpIsEnabled === 'function' ? cmpIsEnabled() : true;
+  if(prev.length && cmpOn){
+    ctx.beginPath();
+    ctx.strokeStyle = '#9ca3af';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([4,4]);
+    ctx.lineJoin = 'round';
+    prev.forEach((v,i)=>{ i===0 ? ctx.moveTo(scaleX(i), scaleY(v)) : ctx.lineTo(scaleX(i), scaleY(v)); });
+    ctx.stroke();
+    ctx.setLineDash([]);
+    // Dots
+    prev.forEach((v,i)=>{
+      ctx.beginPath();
+      ctx.arc(scaleX(i), scaleY(v), 2.5, 0, Math.PI*2);
+      ctx.fillStyle = '#d1d5db';
+      ctx.fill();
+    });
+  }
+
+  // ── Draw selected period fill ──
+  ctx.beginPath();
+  ctx.moveTo(scaleX(0), scaleY(vals[0]));
+  vals.forEach((v,i)=>{ ctx.lineTo(scaleX(i), scaleY(v)); });
+  ctx.lineTo(scaleX(vals.length-1), PAD.top+cH);
+  ctx.lineTo(scaleX(0), PAD.top+cH);
+  ctx.closePath();
+  ctx.fillStyle = '#185fa5' + '14';
+  ctx.fill();
+
+  // ── Draw selected period line ──
+  ctx.beginPath();
+  ctx.strokeStyle = '#185fa5';
+  ctx.lineWidth = 2.5;
+  ctx.lineJoin = 'round';
+  vals.forEach((v,i)=>{ i===0 ? ctx.moveTo(scaleX(i), scaleY(v)) : ctx.lineTo(scaleX(i), scaleY(v)); });
+  ctx.stroke();
+
+  // Dots for selected
+  vals.forEach((v,i)=>{
+    ctx.beginPath();
+    ctx.arc(scaleX(i), scaleY(v), 3.5, 0, Math.PI*2);
+    ctx.fillStyle = '#fff';
+    ctx.fill();
+    ctx.strokeStyle = '#185fa5';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  });
+
+  // ── Tooltip showing both lines ──
+  canvas.onmousemove = function(e){
+    const rect = canvas.getBoundingClientRect();
+    const mx = (e.clientX - rect.left) * (W/rect.width);
+    let closest = 0, minDist = Infinity;
+    vals.forEach((_,i)=>{ const dist=Math.abs(scaleX(i)-mx); if(dist<minDist){minDist=dist;closest=i;} });
+    if(minDist > 30){ canvas._ttip && (canvas._ttip.style.display='none'); return; }
+    let tip = canvas._ttip;
+    if(!tip){
+      tip = document.createElement('div');
+      tip.style.cssText = 'position:absolute;background:#111827;color:#fff;font-size:10px;padding:6px 10px;border-radius:6px;pointer-events:none;z-index:10;white-space:nowrap;line-height:1.6';
+      canvas.parentElement.style.position='relative';
+      canvas.parentElement.appendChild(tip);
+      canvas._ttip = tip;
+    }
+    const selLbl = document.getElementById('legend-sel')?.textContent || 'Geselecteerd';
+    const cmpLbl = document.getElementById('legend-cmp')?.textContent || 'Vergeleken';
+    const selVal = vals[closest];
+    const cmpVal = prev[closest];
+    const diffPct = cmpVal ? (((selVal-cmpVal)/cmpVal)*100).toFixed(1) : null;
+    const diffColor = diffPct !== null ? (parseFloat(diffPct)>=0 ? '#4ade80' : '#f87171') : '';
+    tip.innerHTML = '<strong>'+MONTHS[closest]+'</strong><br>'
+      + '<span style="color:#93c5fd">● '+selLbl+':</span> '+selVal+' '+d.unit+'<br>'
+      + (cmpVal ? '<span style="color:#d1d5db">● '+cmpLbl+':</span> '+cmpVal+' '+d.unit : '')
+      + (diffPct !== null ? '<br><span style="color:'+diffColor+'">Δ '+( parseFloat(diffPct)>=0?'+':'')+diffPct+'%</span>' : '');
+    tip.style.left = (scaleX(closest) - tip.offsetWidth/2 + 10) + 'px';
+    tip.style.top = (scaleY(selVal) - 70) + 'px';
+    tip.style.display = 'block';
+  };
+  canvas.onmouseleave = function(){ canvas._ttip && (canvas._ttip.style.display='none'); };
+}
+
+// ── PERIOD SELECTOR ──
+function fmtDate(d){ const o=new Date(d); return o.toLocaleDateString('nl-NL',{month:'short',year:'numeric'}); }
+
+function cmpIsEnabled(){ return document.getElementById('cmp-enable')?.checked; }
+
+function toggleCmpPeriod(){
+  const on = cmpIsEnabled();
+  const inp = document.getElementById('cmp-inputs');
+  const legendRow = document.getElementById('cmp-legend-row');
+  if(inp) inp.style.display = on ? 'flex' : 'none';
+  if(legendRow) legendRow.style.display = on ? 'flex' : 'none';
+  updatePeriodDisplay();
+  if(activeTrendId){ const t=document.getElementById('trend-title'); if(t) showTrend(activeTrendId, t.textContent); }
+}
+
+function updatePeriodDisplay(){
+  const sf=document.getElementById('sel-from').value;
+  const st=document.getElementById('sel-to').value;
+  if(!sf||!st) return;
+  const selLbl = fmtDate(sf)+' – '+fmtDate(st);
+  const pd = document.getElementById('period-display');
+  const ls = document.getElementById('legend-sel');
+  if(ls) ls.textContent = selLbl;
+
+  if(cmpIsEnabled()){
+    const cf=document.getElementById('cmp-from')?.value;
+    const ct=document.getElementById('cmp-to')?.value;
+    const cmpLbl = cf&&ct ? fmtDate(cf)+' – '+fmtDate(ct) : '';
+    if(pd) pd.textContent = selLbl + (cmpLbl?' vs '+cmpLbl:'');
+    const lc = document.getElementById('legend-cmp');
+    if(lc && cmpLbl) lc.textContent = cmpLbl;
+  } else {
+    if(pd) pd.textContent = selLbl;
+  }
+  if(activeTrendId){ const t=document.getElementById('trend-title'); if(t) showTrend(activeTrendId, t.textContent); }
+}
+
+function setQuick(el, preset){
+  document.querySelectorAll('.quick-btn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  const now = new Date();
+  let sf,st,cf,ct;
+  if(preset==='ytd'){
+    sf=new Date(now.getFullYear(),0,1); st=now;
+    cf=new Date(now.getFullYear()-1,0,1); ct=new Date(now.getFullYear()-1,now.getMonth(),now.getDate());
+  } else if(preset==='lw'){
+    const day=now.getDay()||7;
+    sf=new Date(now); sf.setDate(now.getDate()-day-6);
+    st=new Date(now); st.setDate(now.getDate()-day);
+    cf=new Date(sf); cf.setFullYear(cf.getFullYear()-1);
+    ct=new Date(st); ct.setFullYear(ct.getFullYear()-1);
+  } else if(preset==='lm'){
+    sf=new Date(now.getFullYear(),now.getMonth()-1,1);
+    st=new Date(now.getFullYear(),now.getMonth(),0);
+    cf=new Date(now.getFullYear()-1,now.getMonth()-1,1);
+    ct=new Date(now.getFullYear()-1,now.getMonth(),0);
+  } else if(preset==='lq'){
+    const mo=now.getMonth(); const yr=now.getFullYear();
+    const lqm=mo<3?mo+9:mo-3; const lqy=mo<3?yr-1:yr;
+    const qs=Math.floor(lqm/3)*3;
+    sf=new Date(lqy,qs,1); st=new Date(lqy,qs+3,0);
+    cf=new Date(lqy-1,qs,1); ct=new Date(lqy-1,qs+3,0);
+  } else if(preset==='q'){
+    const qStart=Math.floor(now.getMonth()/3)*3;
+    sf=new Date(now.getFullYear(),qStart,1); st=new Date(now.getFullYear(),qStart+3,0);
+    cf=new Date(now.getFullYear()-1,qStart,1); ct=new Date(now.getFullYear()-1,qStart+3,0);
+  } else if(preset==='ly'){
+    sf=new Date(now.getFullYear()-1,0,1); st=new Date(now.getFullYear()-1,11,31);
+    cf=new Date(now.getFullYear()-2,0,1); ct=new Date(now.getFullYear()-2,11,31);
+  }
+  const fmt=d=>d.toISOString().split('T')[0];
+  document.getElementById('sel-from').value=fmt(sf);
+  document.getElementById('sel-to').value=fmt(st);
+  const cfEl=document.getElementById('cmp-from');
+  const ctEl=document.getElementById('cmp-to');
+  if(cfEl&&ct) cfEl.value=fmt(cf);
+  if(ctEl&&ct) ctEl.value=fmt(ct);
+  updatePeriodDisplay();
+}
+
+</script>
+
+
+<script>
+const CMP_LABELS={active:'Active',dis:'Disengaged',inact:'Inactive',onboard:'Onboarding',all:'Alle spelers'};
+const CMP_COLORS={active:'#3b6d11',dis:'#854f0b',inact:'#a32d2d',onboard:'#0f6e56',all:'#185fa5'};
+const CMP_ROWS=[
+  ['# Spelers','n1',false],['€ Base waarde','n0',false],['LTV','n2',false],
+  ['Omzet / speler','n3',false],['AOV','n4',false],['Lifetime (mnd)','n5',false],
+  ['Speler-penetratie','l0',false],['Speelmomenten/sp.','l1',false],
+  ['Gem. speelinterval','l2',true],['Gem. prijs/lot','l3',false],
+  ['Gem. loten/aanko.','l4',false],
+  ['% Aanko. promotie','l6',true],['Gem. % korting','l7',true],
+  ['Aankoop recentie','l9',true],
+  ['Instroom','n1a',false],['Uitstroom','n1b',true]
+];
+
+function renderComparison(){
+  const a=document.getElementById('cmp-a').value;
+  const b=document.getElementById('cmp-b').value;
+  const useC=document.getElementById('cmp-c-on').checked;
+  const c=document.getElementById('cmp-c').value;
+  const cols=useC?[a,b,c]:[a,b];
+
+  let head=`<tr><th style="text-align:left;padding:8px 12px;font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #f3f4f6;width:160px">KPI</th>`;
+  cols.forEach(k=>{head+=`<th style="text-align:center;padding:8px 12px;font-size:12px;font-weight:700;color:${CMP_COLORS[k]};border-bottom:2px solid #f3f4f6;border-left:1px solid #f3f4f6">${CMP_LABELS[k]}</th>`;});
+  if(cols.length===2) head+=`<th style="text-align:center;padding:8px 12px;font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #f3f4f6;border-left:1px solid #f3f4f6">Verschil A↔B</th>`;
+  head+='</tr>';
+  document.getElementById('cmp-head').innerHTML=head;
+
+  let body='';
+  CMP_ROWS.forEach(([label,key,negGood],i)=>{
+    const bg=i%2===0?'#fff':'#f9fafb';
+    body+=`<tr style="background:${bg}"><td style="padding:8px 12px;font-size:11px;font-weight:500;color:#374151;border-bottom:1px solid #f3f4f6">${label}</td>`;
+    const vals=cols.map(k=>{
+      if(!SEG[k]||!SEG[k][key]) return {val:'—',delta:'—',good:true};
+      const[delta,val,good]=SEG[k][key];
+      return{val,delta,good};
+    });
+    vals.forEach(({val,delta,good})=>{
+      const isGood=negGood?!good:good;
+      const bc=isGood?'#dcfce7':'#fee2e2';
+      const tc=isGood?'#166534':'#dc2626';
+      body+=`<td style="padding:8px 12px;text-align:center;border-bottom:1px solid #f3f4f6;border-left:1px solid #f3f4f6"><div style="font-size:13px;font-weight:700;color:#111827;margin-bottom:2px">${val}</div><div style="display:inline-block;padding:1px 7px;border-radius:8px;font-size:10px;font-weight:600;background:${bc};color:${tc}">${delta}</div></td>`;
+    });
+    if(cols.length===2){
+      const v0=SEG[cols[0]]?.[key]?.[1]??'';
+      const v1=SEG[cols[1]]?.[key]?.[1]??'';
+      const n0=parseFloat(String(v0).replace(/[€%\s]/g,'').replace(/\./g,'').replace(',','.'));
+      const n1=parseFloat(String(v1).replace(/[€%\s]/g,'').replace(/\./g,'').replace(',','.'));
+      let diff='<span style="font-size:11px;color:#9ca3af">—</span>';
+      if(!isNaN(n0)&&!isNaN(n1)){
+        const d=(n0-n1).toFixed(1);
+        const pos=parseFloat(d)>0;
+        const good=negGood?!pos:pos;
+        diff=`<span style="font-size:12px;font-weight:700;color:${good?'#166534':'#dc2626'}">${pos?'+':''}${d}</span>`;
+      }
+      body+=`<td style="padding:8px 12px;text-align:center;border-bottom:1px solid #f3f4f6;border-left:1px solid #f3f4f6">${diff}</td>`;
+    }
+    body+='</tr>';
+  });
+  document.getElementById('cmp-body').innerHTML=body;
+}
+
+// Auto-render on load
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',renderComparison);
+} else {
+  renderComparison();
+}
+</script>
+<script>try{init();}catch(e){}</script>
+</body></html>
