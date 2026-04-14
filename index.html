@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0072)file:///C:/Users/julien.hamerlinck/Downloads/nlo_driver_tree_v02_59.html -->
+<!-- saved from url=(0072)file:///C:/Users/julien.hamerlinck/Downloads/nlo_driver_tree_v02_61.html -->
 <html lang="nl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -533,7 +533,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
   <div style="display:grid;grid-template-columns:1fr 220px;gap:20px;align-items:start">
     <div style="position:relative;height:220px;width:100%">
       <canvas id="trend-chart" style="width:100%;height:220px" width="1362" height="220"></canvas>
-    </div>
+    <div style="position: absolute; background: rgb(17, 24, 39); color: rgb(255, 255, 255); font-size: 10px; padding: 6px 10px; border-radius: 6px; pointer-events: none; z-index: 10; white-space: nowrap; line-height: 1.6; left: 1276.5px; top: -24.0686px; display: none;"><strong>Mrt</strong><br><span style="color:#93c5fd">● Apr 2025 – Mrt 2026:</span> 85.2 €<br><span style="color:#d1d5db">● Apr 2024 – Mrt 2025:</span> 74.2 €<br><span style="color:#4ade80">Δ +14.8%</span></div></div>
     <div>
       <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af;margin-bottom:10px">Samenvatting</div>
       <div id="trend-stats">
@@ -918,105 +918,333 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 </div>
 
 <!-- OWNED MEDIA EXECUTION LAYER -->
-<div class="ex-panel">
-  <div class="ex-title">Owned media execution layer — relatie kanaalactiviteit → KPI's in de tree</div>
-  <div class="ex-grid">
+<div style="background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:18px;margin-bottom:14px">
 
-    <div class="ex-col">
-      <div class="ex-phase ph-ob">Onboard</div>
-      <div class="ch-block">
-        <div class="ch-label"><span class="ch-dot ch-em"></span>Email (Braze)</div>
-        <div class="ch-item">Welcome-serie (3-step)<br><span class="ch-kpi">→ Activatie % · # Spelers</span></div>
-        <div class="ch-item">IDIN-herinnering D+1<br><span class="ch-kpi">→ Activatie %</span></div>
-        <div class="ch-item">Activatieherinnering D+3<br><span class="ch-kpi">→ Activatie %</span></div>
-      </div>
-      <div class="ch-block">
-        <div class="ch-label"><span class="ch-dot ch-pu"></span>App / Push</div>
-        <div class="ch-item">Activatie push na registratie<br><span class="ch-kpi">→ Activatie %</span></div>
-        <div class="ch-item">Retail scan → account prompt<br><span class="ch-kpi">→ Activatie %</span></div>
-      </div>
-      <div class="ch-block">
-        <div class="ch-label"><span class="ch-dot ch-tm"></span>Telemarketing</div>
-        <div class="ch-item">Welcome call (abo)<br><span class="ch-kpi">→ Activatie %</span></div>
-      </div>
-    </div>
-
-    <div class="ex-col">
-      <div class="ex-phase ph-ac">Active</div>
-      <div class="ch-block">
-        <div class="ch-label"><span class="ch-dot ch-em"></span>Email (Braze)</div>
-        <div class="ch-item">Draw-herinnering (pre-draw)<br><span class="ch-kpi">→ Speelmomenten · Recentie</span></div>
-        <div class="ch-item">Cross-sell campagne (merk X→Y)<br><span class="ch-kpi">→ Cross-brand conv. %</span></div>
-        <div class="ch-item">Upsell los → abo<br><span class="ch-kpi">→ Los→abo conv. % · LTV</span></div>
-        <div class="ch-item">Jackpot/event campagne<br><span class="ch-kpi">→ Freq. index · AOV</span></div>
-      </div>
-      <div class="ch-block">
-        <div class="ch-label"><span class="ch-dot ch-pu"></span>App / Push</div>
-        <div class="ch-item">Pre-draw push<br><span class="ch-kpi">→ Speelmomenten · Recentie</span></div>
-        <div class="ch-item">In-app cross-sell banner<br><span class="ch-kpi">→ Cross-brand conv. %</span></div>
-      </div>
-      <div class="ch-block">
-        <div class="ch-label"><span class="ch-dot ch-we"></span>Web</div>
-        <div class="ch-item">Personalisatie cross-brand widget<br><span class="ch-kpi">→ Cross-brand conv. % · AOV</span></div>
-      </div>
-    </div>
-
-    <div class="ex-col">
-      <div class="ex-phase ph-di">Disengaged</div>
-      <div class="ch-block">
-        <div class="ch-label"><span class="ch-dot ch-em"></span>Email (Braze)</div>
-        <div class="ch-item">Re-engagement flow (3-step)<br><span class="ch-kpi">→ Reactivatie % → # Spelers</span></div>
-        <div class="ch-item">Save-campagne (abo at-risk)<br><span class="ch-kpi">→ Churn rate · Customer value</span></div>
-        <div class="ch-item">Promotionele aanbieding<br><span class="ch-kpi">→ Reactivatie %</span></div>
-        <div class="ch-item">Exit-survey bij opzegging<br><span class="ch-kpi">→ Churnreden per merk</span></div>
-      </div>
-      <div class="ch-block">
-        <div class="ch-label"><span class="ch-dot ch-pu"></span>App / Push</div>
-        <div class="ch-item">Re-engagement push (At Risk)<br><span class="ch-kpi">→ Reactivatie %</span></div>
-      </div>
-      <div class="ch-block">
-        <div class="ch-label"><span class="ch-dot ch-tm"></span>Telemarketing</div>
-        <div class="ch-item">Retentiegesprek (abo)<br><span class="ch-kpi">→ Churn rate · Reactivatie %</span></div>
-      </div>
-    </div>
-
-    <div class="ex-col">
-      <div class="ex-phase ph-in">Inactive</div>
-      <div class="ch-block">
-        <div class="ch-label"><span class="ch-dot ch-em"></span>Email (Braze)</div>
-        <div class="ch-item">Win-back campagne (Sleeper)<br><span class="ch-kpi">→ Reactivatie % → # Spelers</span></div>
-        <div class="ch-item">High-value aanbieding<br><span class="ch-kpi">→ Reactivatie % · AOV</span></div>
-        <div class="ch-item">Laatste kans-mail (&lt;3jr anon.)<br><span class="ch-kpi">→ Uitstroom (absoluut)</span></div>
-      </div>
-      <div class="ch-block">
-        <div class="ch-label"><span class="ch-dot ch-pu"></span>App / Push</div>
-        <div class="ch-item">Win-back push (app actief)<br><span class="ch-kpi">→ Reactivatie %</span></div>
-      </div>
-      <div class="ch-block">
-        <div class="ch-label"><span class="ch-dot ch-tm"></span>Telemarketing</div>
-        <div class="ch-item">Win-back call (hoog-waardige Sleepers)<br><span class="ch-kpi">→ Reactivatie % · LTV</span></div>
-      </div>
-    </div>
-
-    <div class="ex-col">
-      <div class="ex-phase ph-ui">Uitstroom</div>
-      <div class="ch-block">
-        <div class="ch-label"><span class="ch-dot ch-em"></span>Email (Braze)</div>
-        <div class="ch-item">Pre-churn save-aanbieding<br><span class="ch-kpi">→ Churn rate (abo)</span></div>
-        <div class="ch-item">Exit-survey na opzegging<br><span class="ch-kpi">→ Uitstroom (absoluut)</span></div>
-      </div>
-      <div class="ch-block">
-        <div class="ch-label"><span class="ch-dot ch-tm"></span>Telemarketing</div>
-        <div class="ch-item">Save-call bij opzegging<br><span class="ch-kpi">→ Churn rate (abo)</span></div>
-      </div>
-      <div style="margin-top:8px;font-size:9px;color:#9ca3af;border-top:1px solid #f3f4f6;padding-top:6px;line-height:1.5">
-        Na geanonimisering: niet meer bereikbaar. Herinstroom via Onboard als nieuw account.
-      </div>
-    </div>
-
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+  <div>
+    <div style="font-size:13px;font-weight:700;color:#111827">Owned media executie — campagne performance &amp; attributie</div>
+    <div style="font-size:11px;color:#6b7280;margin-top:2px">Braze · Last-touch attributie (Click 36u / Open 24u / Impression 6u) · Join op A_NYX_ACCOUNT_ID</div>
+  </div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap">
+    <select style="font-size:11px;padding:4px 8px;border-radius:6px;border:1px solid #e5e7eb;color:#374151"><option>Apr 2025–Mrt 2026</option></select>
+    <select style="font-size:11px;padding:4px 8px;border-radius:6px;border:1px solid #e5e7eb;color:#374151"><option>Alle merken</option><option>STL</option><option>EJP</option><option>LTT</option><option>KL</option><option>LD</option><option>MJN</option></select>
+    <select style="font-size:11px;padding:4px 8px;border-radius:6px;border:1px solid #e5e7eb;color:#374151"><option>Alle segmenten</option><option>New</option><option>Repeater</option><option>At risk</option><option>Sleeper</option></select>
+    <select style="font-size:11px;padding:4px 8px;border-radius:6px;border:1px solid #e5e7eb;color:#374151"><option>Alle kanalen</option><option>Email</option><option>Push</option><option>InApp</option><option>Content card</option></select>
   </div>
 </div>
 
+<!-- Header KPI bar -->
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-bottom:14px">
+  <div style="background:#f9fafb;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#6b7280;margin-bottom:3px">Verzonden</div><div style="font-size:17px;font-weight:700;color:#111827">2,4M</div><div style="font-size:10px;color:#166534;margin-top:2px">+12.4% vs vj</div></div>
+  <div style="background:#f9fafb;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#6b7280;margin-bottom:3px">Delivery rate</div><div style="font-size:17px;font-weight:700;color:#111827">94,2%</div><div style="font-size:10px;color:#dc2626;margin-top:2px">-1.1pp (email only)</div></div>
+  <div style="background:#f9fafb;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#6b7280;margin-bottom:3px">Open rate</div><div style="font-size:17px;font-weight:700;color:#111827">38,2%</div><div style="font-size:10px;color:#166534;margin-top:2px">+2.1pp</div></div>
+  <div style="background:#f9fafb;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#6b7280;margin-bottom:3px">CTOR (click/open)</div><div style="font-size:17px;font-weight:700;color:#111827">14,8%</div><div style="font-size:10px;color:#dc2626;margin-top:2px">-0.8pp</div></div>
+  <div style="background:#f9fafb;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#6b7280;margin-bottom:3px">Attr. omzet totaal</div><div style="font-size:17px;font-weight:700;color:#111827">€ 8,4M</div><div style="font-size:10px;color:#166534;margin-top:2px">+18.6%</div></div>
+  <div style="background:#f9fafb;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#6b7280;margin-bottom:3px">Rev / send</div><div style="font-size:17px;font-weight:700;color:#111827">€ 3,50</div><div style="font-size:10px;color:#166534;margin-top:2px">+5.4%</div></div>
+</div>
+
+<!-- Channel + Segment panels -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+
+  <!-- Channel performance -->
+  <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:14px">
+    <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#9ca3af;margin-bottom:10px">Kanaal performance — engagement &amp; delivery</div>
+    <table style="width:100%;border-collapse:collapse;font-size:11px">
+      <thead><tr>
+        <th style="text-align:left;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">Kanaal</th>
+        <th style="text-align:right;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">Verzonden</th>
+        <th style="text-align:right;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">Delivery%</th>
+        <th style="text-align:right;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">Open%</th>
+        <th style="text-align:right;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">CTOR%</th>
+        <th style="text-align:right;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">Unsub%</th>
+        <th style="text-align:right;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">Conv%</th>
+        <th style="text-align:right;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">Attr. omzet</th>
+        <th style="text-align:right;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">Rev/send</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td style="padding:6px 6px;border-bottom:1px solid #f9fafb"><span style="background:#ede9fe;color:#4c1d95;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600">Email</span></td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#111827">1.840.000</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#166534;font-weight:600">94,2%</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#166534">42,1%</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb">16,2%</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#dc2626">0,18%</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#166534">7,8%</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#166534;font-weight:600">€ 5,2M</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#166534">€ 4,10</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 6px;border-bottom:1px solid #f9fafb"><span style="background:#fee2e2;color:#7f1d1d;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600">Push</span></td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#111827">380.000</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb">28,4%</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb">12,1%</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb">4,2%</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;font-weight:600">€ 1,8M</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb">€ 3,20</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 6px;border-bottom:1px solid #f9fafb"><span style="background:#f3f4f6;color:#374151;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600">InApp</span></td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#111827">142.000</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#166534">18,4%</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb">5,6%</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;font-weight:600">€ 0,9M</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb">€ 4,80</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 6px"><span style="background:#f3f4f6;color:#374151;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600">Content card</span></td>
+          <td style="text-align:right;padding:6px 6px;color:#111827">38.000</td>
+          <td style="text-align:right;padding:6px 6px;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 6px;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 6px">9,2%</td>
+          <td style="text-align:right;padding:6px 6px;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 6px">3,1%</td>
+          <td style="text-align:right;padding:6px 6px;font-weight:600">€ 0,5M</td>
+          <td style="text-align:right;padding:6px 6px">€ 2,10</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Segment impact -->
+  <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:14px">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+      <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#9ca3af">Segment impact — via join A_NYX_ACCOUNT_ID + CVM state</div>
+      <span style="background:#fef3c7;color:#92400e;padding:1px 6px;border-radius:4px;font-size:9px;font-weight:600">Join vereist</span>
+    </div>
+    <table style="width:100%;border-collapse:collapse;font-size:11px">
+      <thead><tr>
+        <th style="text-align:left;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">Segment</th>
+        <th style="text-align:left;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">Fase</th>
+        <th style="text-align:right;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">Ontvangers</th>
+        <th style="text-align:right;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">Conv%</th>
+        <th style="text-align:right;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">Attr. omzet</th>
+        <th style="text-align:left;padding:5px 6px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;border-bottom:1px solid #f3f4f6">Segment beweging</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td style="padding:6px 6px;border-bottom:1px solid #f9fafb;color:#111827">New</td>
+          <td style="padding:6px 6px;border-bottom:1px solid #f9fafb"><span style="background:#d1fae5;color:#064e3b;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600">GET</span></td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb">35.420</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;color:#166534;font-weight:600">8,4%</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;font-weight:600;color:#166534">€ 1,2M</td>
+          <td style="padding:6px 6px;border-bottom:1px solid #f9fafb;font-size:10px;color:#166534">→ Repeater +24.180</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 6px;border-bottom:1px solid #f9fafb;color:#111827">Repeater</td>
+          <td style="padding:6px 6px;border-bottom:1px solid #f9fafb"><span style="background:#dbeafe;color:#1e3a8a;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600">GROW</span></td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb">842.000</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb">6,2%</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;font-weight:600">€ 5,4M</td>
+          <td style="padding:6px 6px;border-bottom:1px solid #f9fafb;font-size:10px;color:#166534">Retained 97,6%</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 6px;border-bottom:1px solid #f9fafb;color:#111827">At risk</td>
+          <td style="padding:6px 6px;border-bottom:1px solid #f9fafb"><span style="background:#fef3c7;color:#78350f;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600">KEEP</span></td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb">241.000</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb">4,8%</td>
+          <td style="text-align:right;padding:6px 6px;border-bottom:1px solid #f9fafb;font-weight:600">€ 1,1M</td>
+          <td style="padding:6px 6px;border-bottom:1px solid #f9fafb;font-size:10px;color:#166534">→ Revived +9.840 (4,1%)</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 6px;color:#111827">Sleeper</td>
+          <td style="padding:6px 6px"><span style="background:#fef3c7;color:#78350f;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600">KEEP</span></td>
+          <td style="text-align:right;padding:6px 6px">36.400</td>
+          <td style="text-align:right;padding:6px 6px">2,1%</td>
+          <td style="text-align:right;padding:6px 6px;font-weight:600">€ 0,3M</td>
+          <td style="padding:6px 6px;font-size:10px;color:#166534">→ Recovered +3.210 (8,8%)</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:8px;padding:6px 8px;background:#f9fafb;border-radius:6px;font-size:10px;color:#6b7280">Segment beweging = CVM state 30 dgn na campagne vs send date · Join op A_NYX_ACCOUNT_ID</div>
+  </div>
+</div>
+
+<!-- Driver tree KPIs -->
+<div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:14px;margin-bottom:14px">
+  <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#9ca3af;margin-bottom:10px">Driver tree KPI's — geattribueerd op campagneniveau (via vw_online_sales + vw_subscription_component)</div>
+  <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px">
+    <div style="background:#f9fafb;border-radius:8px;padding:10px 12px">
+      <div style="font-size:10px;color:#6b7280;margin-bottom:3px"># Spelers converted</div>
+      <div style="font-size:16px;font-weight:700;color:#111827">48.240</div>
+      <div style="font-size:9px;color:#9ca3af;margin-top:2px">COUNT DISTINCT NYX_ID</div>
+    </div>
+    <div style="background:#f9fafb;border-radius:8px;padding:10px 12px">
+      <div style="font-size:10px;color:#6b7280;margin-bottom:3px">Attr. AOV</div>
+      <div style="font-size:16px;font-weight:700;color:#111827">€ 24,80</div>
+      <div style="font-size:9px;color:#166534;margin-top:2px">+11.4% vs vj</div>
+    </div>
+    <div style="background:#f9fafb;border-radius:8px;padding:10px 12px">
+      <div style="font-size:10px;color:#6b7280;margin-bottom:3px">Gem. loten / aankoop</div>
+      <div style="font-size:16px;font-weight:700;color:#111827">3,3</div>
+      <div style="font-size:9px;color:#166534;margin-top:2px">+7.4% vs vj</div>
+    </div>
+    <div style="background:#f9fafb;border-radius:8px;padding:10px 12px">
+      <div style="font-size:10px;color:#6b7280;margin-bottom:3px">Gem. prijs / lot</div>
+      <div style="font-size:16px;font-weight:700;color:#111827">€ 6,50</div>
+      <div style="font-size:9px;color:#166534;margin-top:2px">+12.1% vs vj</div>
+    </div>
+    <div style="background:#f9fafb;border-radius:8px;padding:10px 12px">
+      <div style="font-size:10px;color:#6b7280;margin-bottom:3px">Attr. omzet online</div>
+      <div style="font-size:16px;font-weight:700;color:#111827">€ 5,2M</div>
+      <div style="font-size:9px;color:#9ca3af;margin-top:2px">vw_online_sales</div>
+    </div>
+    <div style="background:#f9fafb;border-radius:8px;padding:10px 12px">
+      <div style="font-size:10px;color:#6b7280;margin-bottom:3px">Attr. omzet abo</div>
+      <div style="font-size:16px;font-weight:700;color:#111827">€ 3,2M</div>
+      <div style="font-size:9px;color:#9ca3af;margin-top:2px">vw_subscription</div>
+    </div>
+  </div>
+  <div style="margin-top:8px;padding:6px 10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;font-size:10px;color:#166534">
+    Tree nodes berekend per campagne: <strong># Spelers</strong> · <strong>AOV</strong> · <strong>Gem. prijs/lot</strong> · <strong>Gem. loten/aankoop</strong> · <strong>Omzet online</strong> · <strong>Omzet abo</strong> &nbsp;·&nbsp; <span style="color:#9ca3af">Niet direct (buiten 48u window): Lifetime · Speelinterval · Activity rate</span>
+  </div>
+</div>
+
+<!-- Top campaigns table -->
+<div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:14px">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+    <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#9ca3af">Top campagnes — gesorteerd op attr. omzet</div>
+    <div style="font-size:10px;color:#6b7280">Campagnenaam = [CellID]_[Merk]_[Lifecycle]_[Campaign]_[Trigger]_[Kanaal]</div>
+  </div>
+  <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:11px;min-width:1100px">
+      <thead><tr style="background:#f9fafb">
+        <th style="text-align:left;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6;min-width:180px">Campagne</th>
+        <th style="padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Merk</th>
+        <th style="padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Segment</th>
+        <th style="padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Fase</th>
+        <th style="padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Kanaal</th>
+        <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Verzonden</th>
+        <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Delivery%</th>
+        <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Open%</th>
+        <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">CTOR%</th>
+        <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Unsub%</th>
+        <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Conv%</th>
+        <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6"># Spelers</th>
+        <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">AOV</th>
+        <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Loten/aanko.</th>
+        <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Prijs/lot</th>
+        <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Attr. omzet</th>
+        <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Omzet online</th>
+        <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Omzet abo</th>
+        <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Rev/send</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;font-size:10px;color:#6b7280">159042_STL_INL_INLUPS_SCE_EM</td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;text-align:center">STL</td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb">Repeater</td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb"><span style="background:#dbeafe;color:#1e3a8a;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600">GROW</span></td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb"><span style="background:#ede9fe;color:#4c1d95;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600">EM</span></td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">284.200</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#166534">95,1%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#166534">44,2%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#166534">18,4%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">0,12%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#166534">9,2%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">26.150</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#166534">€ 27,40</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#166534">4,1</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#166534">€ 7,20</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;font-weight:700;color:#166534">€ 1,4M</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 0,9M</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 0,5M</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#166534">€ 4,93</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;font-size:10px;color:#6b7280">150306_EJP_INL_INLOS_SCE_EM</td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;text-align:center">EJP</td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb">Repeater</td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb"><span style="background:#dbeafe;color:#1e3a8a;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600">GROW</span></td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb"><span style="background:#ede9fe;color:#4c1d95;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600">EM</span></td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">198.400</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">93,8%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">38,1%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">14,2%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">0,21%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">7,4%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">14.680</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 24,20</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">3,4</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 6,80</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;font-weight:700">€ 0,9M</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 0,9M</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 3,82</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;font-size:10px;color:#6b7280">163878_STL_ADC_INAPP-ONLINE_SCE_IA</td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;text-align:center">STL</td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb">New</td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb"><span style="background:#d1fae5;color:#064e3b;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600">GET</span></td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb"><span style="background:#f3f4f6;color:#374151;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600">IA</span></td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">84.600</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#166534">22,1%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#166534">10,4%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">8.800</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 18,40</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">2,4</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 6,20</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;font-weight:700">€ 0,7M</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 0,7M</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#166534">€ 5,20</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;font-size:10px;color:#6b7280">159042_STL_DIS_DISV1O_SCE_EM</td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;text-align:center">STL</td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb">At risk</td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb"><span style="background:#fef3c7;color:#78350f;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600">KEEP</span></td>
+          <td style="padding:6px 8px;border-bottom:1px solid #f9fafb"><span style="background:#ede9fe;color:#4c1d95;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600">EM</span></td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">241.000</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">92,4%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">24,8%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">8,4%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#dc2626">0,44%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">4,1%</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">9.880</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 19,20</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">2,8</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 5,80</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;font-weight:700">€ 0,6M</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 0,2M</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 0,4M</td>
+          <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 2,10</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 8px;font-size:10px;color:#6b7280">111111_EJP_INL_LIGHT-VERSION-APP_SCE_PU</td>
+          <td style="padding:6px 8px;text-align:center">EJP</td>
+          <td style="padding:6px 8px">Repeater</td>
+          <td style="padding:6px 8px"><span style="background:#dbeafe;color:#1e3a8a;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600">GROW</span></td>
+          <td style="padding:6px 8px"><span style="background:#fee2e2;color:#7f1d1d;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600">PU</span></td>
+          <td style="text-align:right;padding:6px 8px">128.000</td>
+          <td style="text-align:right;padding:6px 8px;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 8px">31,2%</td>
+          <td style="text-align:right;padding:6px 8px">14,8%</td>
+          <td style="text-align:right;padding:6px 8px;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 8px">6,8%</td>
+          <td style="text-align:right;padding:6px 8px">8.700</td>
+          <td style="text-align:right;padding:6px 8px">€ 22,80</td>
+          <td style="text-align:right;padding:6px 8px">3,1</td>
+          <td style="text-align:right;padding:6px 8px">€ 6,40</td>
+          <td style="text-align:right;padding:6px 8px;font-weight:700">€ 0,5M</td>
+          <td style="text-align:right;padding:6px 8px">€ 0,5M</td>
+          <td style="text-align:right;padding:6px 8px;color:#9ca3af">—</td>
+          <td style="text-align:right;padding:6px 8px">€ 3,40</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
 <!-- LEGEND -->
 <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:11px;margin-bottom:8px;align-items:center">
   <span style="font-size:10px;font-weight:600;color:#374151">KPI type:</span>
