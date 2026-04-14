@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0072)file:///C:/Users/julien.hamerlinck/Downloads/nlo_driver_tree_v02_61.html -->
+<!-- saved from url=(0072)file:///C:/Users/julien.hamerlinck/Downloads/nlo_driver_tree_v02_62.html -->
 <html lang="nl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -533,7 +533,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
   <div style="display:grid;grid-template-columns:1fr 220px;gap:20px;align-items:start">
     <div style="position:relative;height:220px;width:100%">
       <canvas id="trend-chart" style="width:100%;height:220px" width="1362" height="220"></canvas>
-    <div style="position: absolute; background: rgb(17, 24, 39); color: rgb(255, 255, 255); font-size: 10px; padding: 6px 10px; border-radius: 6px; pointer-events: none; z-index: 10; white-space: nowrap; line-height: 1.6; left: 1276.5px; top: -24.0686px; display: none;"><strong>Mrt</strong><br><span style="color:#93c5fd">● Apr 2025 – Mrt 2026:</span> 85.2 €<br><span style="color:#d1d5db">● Apr 2024 – Mrt 2025:</span> 74.2 €<br><span style="color:#4ade80">Δ +14.8%</span></div></div>
+    </div>
     <div>
       <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af;margin-bottom:10px">Samenvatting</div>
       <div id="trend-stats">
@@ -593,7 +593,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
   </div>
   <div id="wf-container" style="position:relative;width:100%;height:300px;min-height:300px">
     <canvas id="wf-canvas" style="display:block;width:100%;height:300px" width="1602" height="300"></canvas>
-  </div>
+  <div style="position: absolute; background: rgb(17, 24, 39); color: rgb(255, 255, 255); font-size: 10px; padding: 6px 10px; border-radius: 6px; pointer-events: none; z-index: 10; line-height: 1.6; max-width: 220px; white-space: normal; left: 933px; top: 10.3125px; display: none;"><strong>AOV stijging</strong><br>+4.8M<br><span style="color:#9ca3af">Gem. orderwaarde +11.4% · prijs/lot + loten/aankoop + kortingsreductie samen</span></div></div>
   <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:10px;font-size:11px;color:var(--color-text-secondary,#6b7280);padding-top:10px;border-top:1px solid #f3f4f6">
     <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#6b7280;display:inline-block"></span>Startwaarde / eindwaarde</span>
     <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#166534;display:inline-block"></span>Positieve bijdrage</span>
@@ -925,11 +925,47 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
     <div style="font-size:13px;font-weight:700;color:#111827">Owned media executie — campagne performance &amp; attributie</div>
     <div style="font-size:11px;color:#6b7280;margin-top:2px">Braze · Last-touch attributie (Click 36u / Open 24u / Impression 6u) · Join op A_NYX_ACCOUNT_ID</div>
   </div>
-  <div style="display:flex;gap:6px;flex-wrap:wrap">
+  <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
     <select style="font-size:11px;padding:4px 8px;border-radius:6px;border:1px solid #e5e7eb;color:#374151"><option>Apr 2025–Mrt 2026</option></select>
     <select style="font-size:11px;padding:4px 8px;border-radius:6px;border:1px solid #e5e7eb;color:#374151"><option>Alle merken</option><option>STL</option><option>EJP</option><option>LTT</option><option>KL</option><option>LD</option><option>MJN</option></select>
     <select style="font-size:11px;padding:4px 8px;border-radius:6px;border:1px solid #e5e7eb;color:#374151"><option>Alle segmenten</option><option>New</option><option>Repeater</option><option>At risk</option><option>Sleeper</option></select>
     <select style="font-size:11px;padding:4px 8px;border-radius:6px;border:1px solid #e5e7eb;color:#374151"><option>Alle kanalen</option><option>Email</option><option>Push</option><option>InApp</option><option>Content card</option></select>
+    <div style="position:relative" id="cmp-dd-wrap">
+      <button onclick="document.getElementById(&#39;cmp-dropdown&#39;).style.display=document.getElementById(&#39;cmp-dropdown&#39;).style.display===&#39;none&#39;?&#39;block&#39;:&#39;none&#39;" id="cmp-btn" style="font-size:11px;padding:4px 10px;border-radius:6px;border:1px solid #e5e7eb;background:#fff;color:#374151;cursor:pointer;white-space:nowrap">Campagnes <span id="cmp-count" style="background:#185fa5;color:#fff;border-radius:10px;padding:0 5px;font-size:10px;margin-left:4px;display:none">0</span> ▾</button>
+      <div id="cmp-dropdown" style="display: none; position: absolute; right: 0px; top: 32px; background: rgb(255, 255, 255); border: 1px solid rgb(229, 231, 235); border-radius: 8px; padding: 6px 0px; z-index: 100; min-width: 300px; box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px; max-height: 280px; overflow-y: auto;">
+        <div style="padding:6px 10px;border-bottom:1px solid #f3f4f6;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:10px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em">Campagnes</span>
+          <button onclick="clearCmpFilter()" style="font-size:10px;color:#185fa5;background:none;border:none;cursor:pointer;padding:0">Alle tonen</button>
+        </div>
+        <label style="display:flex;align-items:center;gap:8px;padding:6px 12px;cursor:pointer;font-size:11px;color:#374151;border-bottom:1px solid #f9fafb">
+          <input type="checkbox" id="cmp-all" checked="" onchange="toggleAllCmp(this)" style="accent-color:#185fa5"> Alle campagnes
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:5px 12px;cursor:pointer;font-size:11px;color:#374151" class="cmp-item">
+          <input type="checkbox" class="cmp-cb" value="159042_STL_INL_INLUPS_SCE_EM" checked="" onchange="updateCmpFilter()" style="accent-color:#185fa5"> 159042_STL_INL_INLUPS_SCE_EM
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:5px 12px;cursor:pointer;font-size:11px;color:#374151" class="cmp-item">
+          <input type="checkbox" class="cmp-cb" value="150306_EJP_INL_INLOS_SCE_EM" checked="" onchange="updateCmpFilter()" style="accent-color:#185fa5"> 150306_EJP_INL_INLOS_SCE_EM
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:5px 12px;cursor:pointer;font-size:11px;color:#374151" class="cmp-item">
+          <input type="checkbox" class="cmp-cb" value="163878_STL_ADC_INAPP-ONLINE_SCE_IA" checked="" onchange="updateCmpFilter()" style="accent-color:#185fa5"> 163878_STL_ADC_INAPP-ONLINE_SCE_IA
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:5px 12px;cursor:pointer;font-size:11px;color:#374151" class="cmp-item">
+          <input type="checkbox" class="cmp-cb" value="159042_STL_DIS_DISV1O_SCE_EM" checked="" onchange="updateCmpFilter()" style="accent-color:#185fa5"> 159042_STL_DIS_DISV1O_SCE_EM
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:5px 12px;cursor:pointer;font-size:11px;color:#374151" class="cmp-item">
+          <input type="checkbox" class="cmp-cb" value="111111_EJP_INL_LIGHT-VERSION-APP_SCE_PU" checked="" onchange="updateCmpFilter()" style="accent-color:#185fa5"> 111111_EJP_INL_LIGHT-VERSION-APP_SCE_PU
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:5px 12px;cursor:pointer;font-size:11px;color:#374151" class="cmp-item">
+          <input type="checkbox" class="cmp-cb" value="132690_EJP_INL_INLSPC_SCE_EM" checked="" onchange="updateCmpFilter()" style="accent-color:#185fa5"> 132690_EJP_INL_INLSPC_SCE_EM
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:5px 12px;cursor:pointer;font-size:11px;color:#374151" class="cmp-item">
+          <input type="checkbox" class="cmp-cb" value="186706_KRA_ADC_DK-NO-SCAN-NO-BUY_SCE_EM" checked="" onchange="updateCmpFilter()" style="accent-color:#185fa5"> 186706_KRA_ADC_DK-NO-SCAN-NO-BUY_SCE_EM
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:5px 12px;cursor:pointer;font-size:11px;color:#374151" class="cmp-item">
+          <input type="checkbox" class="cmp-cb" value="3016980_KRA_ADC_DK-SWEEPSTAKE-REMINDER_SCE_EM" checked="" onchange="updateCmpFilter()" style="accent-color:#185fa5"> 3016980_KRA_ADC_DK-SWEEPSTAKE-REMINDER_SCE_EM
+        </label>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1133,8 +1169,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
         <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Omzet abo</th>
         <th style="text-align:right;padding:6px 8px;font-size:9px;font-weight:600;text-transform:uppercase;color:#9ca3af;border-bottom:1px solid #f3f4f6">Rev/send</th>
       </tr></thead>
-      <tbody>
-        <tr>
+      <tbody id="cmp-table-body">
+        <tr data-campaign="159042_STL_INL_INLUPS_SCE_EM">
           <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;font-size:10px;color:#6b7280">159042_STL_INL_INLUPS_SCE_EM</td>
           <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;text-align:center">STL</td>
           <td style="padding:6px 8px;border-bottom:1px solid #f9fafb">Repeater</td>
@@ -1155,7 +1191,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
           <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 0,5M</td>
           <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#166534">€ 4,93</td>
         </tr>
-        <tr>
+        <tr data-campaign="150306_EJP_INL_INLOS_SCE_EM">
           <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;font-size:10px;color:#6b7280">150306_EJP_INL_INLOS_SCE_EM</td>
           <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;text-align:center">EJP</td>
           <td style="padding:6px 8px;border-bottom:1px solid #f9fafb">Repeater</td>
@@ -1176,7 +1212,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
           <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#9ca3af">—</td>
           <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 3,82</td>
         </tr>
-        <tr>
+        <tr data-campaign="163878_STL_ADC_INAPP-ONLINE_SCE_IA">
           <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;font-size:10px;color:#6b7280">163878_STL_ADC_INAPP-ONLINE_SCE_IA</td>
           <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;text-align:center">STL</td>
           <td style="padding:6px 8px;border-bottom:1px solid #f9fafb">New</td>
@@ -1197,7 +1233,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
           <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#9ca3af">—</td>
           <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb;color:#166534">€ 5,20</td>
         </tr>
-        <tr>
+        <tr data-campaign="159042_STL_DIS_DISV1O_SCE_EM">
           <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;font-size:10px;color:#6b7280">159042_STL_DIS_DISV1O_SCE_EM</td>
           <td style="padding:6px 8px;border-bottom:1px solid #f9fafb;text-align:center">STL</td>
           <td style="padding:6px 8px;border-bottom:1px solid #f9fafb">At risk</td>
@@ -1218,7 +1254,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
           <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 0,4M</td>
           <td style="text-align:right;padding:6px 8px;border-bottom:1px solid #f9fafb">€ 2,10</td>
         </tr>
-        <tr>
+        <tr data-campaign="111111_EJP_INL_LIGHT-VERSION-APP_SCE_PU">
           <td style="padding:6px 8px;font-size:10px;color:#6b7280">111111_EJP_INL_LIGHT-VERSION-APP_SCE_PU</td>
           <td style="padding:6px 8px;text-align:center">EJP</td>
           <td style="padding:6px 8px">Repeater</td>
